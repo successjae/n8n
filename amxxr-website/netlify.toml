@@ -1,0 +1,14 @@
+# Netlify configuration for the AMXXR site.
+# Works two ways:
+#  1) Drag-and-drop: drop the amxxr-website folder (or zip) on app.netlify.com/drop
+#  2) Git: connect the repo, set Base directory = amxxr-website. This file does the rest.
+
+[build]
+  base    = "amxxr-website"
+  publish = "."
+  command = ""
+
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
