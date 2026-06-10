@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>AMXXR — Team Dashboard</title>
+	<meta name="robots" content="noindex, nofollow">
+	<meta name="theme-color" content="#0b0a08">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="../assets/css/style.css">
+	<link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body>
+
+	<!-- LOGIN -->
+	<div class="login-stage" id="loginStage">
+		<div class="hero-bg" style="position:absolute;inset:0"></div>
+		<div class="login-card">
+			<div class="logo">AM<span>XX</span>R</div>
+			<p style="color:var(--cream-faint);font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:28px">Team Dashboard</p>
+			<form id="loginForm">
+				<div class="field"><label>Team username</label><input name="user" autocomplete="username" required></div>
+				<div class="field"><label>Password</label><input type="password" name="pass" autocomplete="current-password" required></div>
+				<div class="field"><label>Role</label>
+					<select name="role">
+						<option value="admin">Admin (full access)</option>
+						<option value="manager">Manager (fans, orders, events)</option>
+						<option value="content">Content editor (content only)</option>
+					</select>
+				</div>
+				<button class="btn btn-solid" type="submit" style="width:100%">Sign In</button>
+				<p class="form-note" id="loginErr" style="text-align:center">Demo credentials: <strong>team / beloved</strong><br>⚠ Demo auth only — wire to real auth before launch (see README).</p>
+			</form>
+			<p style="margin-top:20px;text-align:center"><a href="../index.html" style="font-size:12px;color:var(--cream-faint)">← Back to site</a></p>
+		</div>
+	</div>
+
+	<!-- SHELL -->
+	<div class="admin-shell" id="shell">
+		<aside class="side">
+			<div class="logo">AM<span>XX</span>R</div>
+			<nav id="sideNav"></nav>
+			<div class="side-foot">
+				<div id="whoami"></div>
+				<button class="rowbtn" id="logoutBtn" style="margin-top:10px">Sign out</button>
+			</div>
+		</aside>
+		<main class="main" id="main"></main>
+	</div>
+
+	<script src="../assets/js/data.js"></script>
+	<script src="../assets/js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Fan Club — AMXXR | Join the BELOVED List</title>
+	<meta name="description" content="Join the official AMXXR fan club — exclusive music, early merch drops, presales, giveaways and VIP access to the BELOVED movement.">
+	<meta name="theme-color" content="#0b0a08">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<style>
+		.tier { display: flex; flex-direction: column; }
+		.tier ul { list-style: none; margin: 18px 0 26px; flex: 1; }
+		.tier ul li { padding: 9px 0; border-bottom: 1px solid var(--line); color: var(--cream-dim); font-size: 14px; }
+		.tier ul li::before { content: '✦  '; color: var(--gold); }
+		.tier-price { font-family: var(--display); font-size: 2.4rem; color: var(--gold); }
+		.tier-price small { font-size: 0.9rem; color: var(--cream-faint); font-family: var(--body); }
+	</style>
+</head>
+<body>
+
+	<section class="page-hero">
+		<div class="hero-bg"></div>
+		<div class="wrap">
+			<span class="kicker">The Inner Circle</span>
+			<h1>BELOVED<br>Fan Club</h1>
+			<p>This isn't a mailing list — it's the inner circle. First access to everything: music, drops, tickets, and moments that never make it to social media.</p>
+		</div>
+	</section>
+
+	<!-- TIERS -->
+	<section>
+		<div class="wrap">
+			<span class="kicker reveal">Choose Your Level</span>
+			<h2 class="section-title reveal">Two ways in</h2>
+			<div class="grid grid-2" style="max-width:920px">
+				<div class="card tier reveal"><div class="card-body" style="display:flex;flex-direction:column;flex:1">
+					<span class="tag">Free Forever</span>
+					<h3 style="font-size:1.6rem">The Fan List</h3>
+					<div class="tier-price">$0</div>
+					<ul>
+						<li>Email + SMS alerts for new music &amp; videos</li>
+						<li>Welcome promo code (BELOVED10)</li>
+						<li>City-based show announcements</li>
+						<li>Giveaway entries</li>
+					</ul>
+					<a class="btn" href="#join">Join Free</a>
+				</div></div>
+				<div class="card tier reveal reveal-d1" style="border-color:rgba(224,167,60,.5)"><div class="card-body" style="display:flex;flex-direction:column;flex:1">
+					<span class="tag hot">VIP</span>
+					<h3 style="font-size:1.6rem">BELOVED VIP</h3>
+					<div class="tier-price">$7<small>/month</small></div>
+					<ul>
+						<li>Everything in the free tier</li>
+						<li>Unreleased tracks &amp; vault sessions</li>
+						<li>48-hour early access to every limited drop</li>
+						<li>Permanent 20% merch code (VIPSOUL)</li>
+						<li>Presale tickets before the public</li>
+						<li>Quarterly VIP-only listening sessions</li>
+					</ul>
+					<a class="btn btn-solid" href="#join" onclick="document.getElementById('vipCheck').checked=true">Become a VIP Supporter</a>
+				</div></div>
+			</div>
+		</div>
+	</section>
+
+	<!-- PERKS GRID -->
+	<section class="alt">
+		<div class="wrap">
+			<span class="kicker reveal">What You Get</span>
+			<h2 class="section-title reveal">Membership means access</h2>
+			<div class="grid grid-3">
+				<div class="card reveal"><div class="card-body"><h3>🎧 Exclusive Music</h3><p>Vault sessions, alternate takes and unreleased records — VIP inbox only.</p></div></div>
+				<div class="card reveal reveal-d1"><div class="card-body"><h3>🧥 Early Drops</h3><p>Shop limited merch 48 hours before the public. Numbered pieces sell out in the window.</p></div></div>
+				<div class="card reveal reveal-d2"><div class="card-body"><h3>🎟 Presale Tickets</h3><p>First crack at every show — including the small rooms that never go public.</p></div></div>
+				<div class="card reveal"><div class="card-body"><h3>🎁 Giveaways</h3><p>Signed test pressings, studio visits, video shoot walk-ons. Members only.</p></div></div>
+				<div class="card reveal reveal-d1"><div class="card-body"><h3>📍 City Alerts</h3><p>Tell us your city — get pinged only when AMXXR is actually coming to you.</p></div></div>
+				<div class="card reveal reveal-d2"><div class="card-body"><h3>🖤 The Credit</h3><p>VIP names go in the liner notes of the next project. You're part of the record.</p></div></div>
+			</div>
+		</div>
+	</section>
+
+	<!-- SIGNUP FORM -->
+	<section id="join">
+		<div class="wrap">
+			<div class="panel reveal" style="max-width:720px;margin:0 auto">
+				<span class="kicker">Sign Up</span>
+				<h2 class="section-title" style="font-size:clamp(1.8rem,5vw,2.8rem)">Join the BELOVED list</h2>
+				<form data-fan-form data-source="fan club" data-tags="fanclub" id="fanForm">
+					<div class="grid grid-2" style="gap:14px">
+						<div class="field"><label>Name</label><input name="name" required></div>
+						<div class="field"><label>Email *</label><input type="email" name="email" required></div>
+						<div class="field"><label>Phone (for SMS alerts)</label><input type="tel" name="phone" placeholder="+1"></div>
+						<div class="field"><label>Instagram / TikTok handle</label><input name="social" placeholder="@"></div>
+						<div class="field"><label>City</label><input name="city"></div>
+						<div class="field"><label>State / Country</label><input name="state"></div>
+					</div>
+					<label style="display:flex;align-items:center;gap:10px;margin:6px 0 22px;color:var(--cream-dim);font-size:14px;cursor:pointer">
+						<input type="checkbox" id="vipCheck" name="vip" style="accent-color:var(--gold);width:18px;height:18px"
+							onchange="document.getElementById('fanForm').dataset.vip = this.checked">
+						I want BELOVED VIP ($7/mo — billing starts at launch, cancel anytime)
+					</label>
+					<button class="btn btn-solid" type="submit" style="width:100%">Get Exclusive Access</button>
+					<p class="form-note">By joining you agree to receive email/SMS from AMXXR. Reply STOP anytime. We never sell your data.</p>
+				</form>
+				<div class="form-success">Welcome to BELOVED. Your code <strong>BELOVED10</strong> is live in the shop right now.</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="assets/js/data.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script src="assets/js/store.js"></script>
+	<script>AMXXR_observeReveals();</script>
+</body>
+</html>

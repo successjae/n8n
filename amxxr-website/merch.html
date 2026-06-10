@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Shop — AMXXR Official Merch | Limited Drops &amp; Bundles</title>
+	<meta name="description" content="Official AMXXR merchandise — heavyweight tees, hoodies, fitted caps, posters, digital albums, bundles and numbered limited drops.">
+	<meta name="theme-color" content="#0b0a08">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+	<section class="page-hero">
+		<div class="hero-bg"></div>
+		<div class="wrap">
+			<span class="kicker">Official Store</span>
+			<h1>The Shop</h1>
+			<p>Heavyweight blanks, numbered drops, music you can own. Fan list members get the code <strong style="color:var(--gold)">BELOVED10</strong> — VIPs get more.</p>
+		</div>
+	</section>
+
+	<!-- LIMITED DROP BANNER -->
+	<section style="padding:48px 0">
+		<div class="wrap">
+			<div class="panel reveal" id="dropBanner" style="display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;border-color:rgba(217,79,48,.45)"></div>
+		</div>
+	</section>
+
+	<!-- CATALOG -->
+	<section style="padding-top:24px">
+		<div class="wrap">
+			<div class="chips reveal" id="shopChips"></div>
+			<div class="grid grid-3" id="shopGrid"></div>
+		</div>
+	</section>
+
+	<!-- BUNDLE / UPSELL -->
+	<section class="alt">
+		<div class="wrap">
+			<div class="split">
+				<div class="reveal">
+					<span class="kicker">Better Together</span>
+					<h2 class="section-title">Music + Merch Bundles</h2>
+					<p class="section-sub" style="margin-bottom:26px">Pair the records with the uniform and save. Every bundle automatically puts you on the VIP early-access list for the next drop.</p>
+					<a class="btn btn-solid" href="#shopGrid" onclick="document.querySelector('[data-cat=bundle]').click()">See Bundles</a>
+				</div>
+				<div class="reveal reveal-d1 grid" id="bundleSide"></div>
+			</div>
+		</div>
+	</section>
+
+	<!-- SUPPORT DIRECT -->
+	<section>
+		<div class="wrap">
+			<div class="panel reveal" style="text-align:center;max-width:700px;margin:0 auto">
+				<span class="kicker" style="justify-content:center">Support Direct</span>
+				<h2 class="section-title" style="font-size:clamp(1.6rem,4vw,2.6rem)">Fuel the next record</h2>
+				<p style="color:var(--cream-dim);margin-bottom:26px">No middleman. Direct support goes straight into studio time, visuals and the live show.</p>
+				<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+					<button class="btn btn-ghost" onclick="AMXXR_toast('Direct support is enabled at launch via Stripe — thank you 🖤')">Support $5</button>
+					<button class="btn btn-ghost" onclick="AMXXR_toast('Direct support is enabled at launch via Stripe — thank you 🖤')">Support $20</button>
+					<button class="btn btn-solid" onclick="AMXXR_toast('Direct support is enabled at launch via Stripe — thank you 🖤')">Support $50</button>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="assets/js/data.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script src="assets/js/store.js"></script>
+	<script>
+	(() => {
+		const A = window.AMXXR;
+
+		const drop = A.PRODUCTS.find(p => p.drop);
+		if (drop) {
+			document.getElementById('dropBanner').innerHTML = `
+				<div>
+					<span class="tag hot">Limited Drop · ${drop.stock} remaining</span>
+					<h2 style="font-size:clamp(1.5rem,4vw,2.4rem);margin:8px 0">${drop.name}</h2>
+					<p style="color:var(--cream-dim);max-width:560px">${drop.desc}</p>
+					${drop.dropEnds ? `<div class="stock-low" data-countdown="${drop.dropEnds}" style="color:var(--gold);margin-top:12px;font-size:14px"></div>` : ''}
+				</div>
+				<div style="text-align:right">
+					<div class="price" style="font-size:2rem;margin-bottom:14px">$${drop.price}</div>
+					<button class="btn btn-crimson" data-add="${drop.id}">Claim Yours</button>
+				</div>`;
+		}
+
+		const cats = [
+			['all', 'Everything'], ['apparel', 'Apparel'], ['drop', 'Limited Drops'],
+			['bundle', 'Bundles'], ['digital', 'Digital'], ['print', 'Prints'],
+		];
+		const chips = document.getElementById('shopChips');
+		chips.innerHTML = cats.map(([k, l], i) => `<button class="chip ${i === 0 ? 'active' : ''}" data-cat="${k}">${l}</button>`).join('');
+
+		const grid = document.getElementById('shopGrid');
+		const render = (cat) => {
+			const list = cat === 'all' ? A.PRODUCTS : A.PRODUCTS.filter(p => p.category === cat);
+			grid.innerHTML = list.length ? list.map(AMXXR_productCard).join('')
+				: '<p style="color:var(--cream-faint)">Nothing here right now — join the fan list to hear about restocks first.</p>';
+			grid.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+		};
+		chips.addEventListener('click', (e) => {
+			const b = e.target.closest('.chip');
+			if (!b) return;
+			chips.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+			b.classList.add('active');
+			render(b.dataset.cat);
+		});
+		render('all');
+
+		document.getElementById('bundleSide').innerHTML =
+			A.PRODUCTS.filter(p => p.category === 'bundle' || p.category === 'digital').slice(0, 2).map(AMXXR_productCard).join('');
+
+		AMXXR_observeReveals();
+	})();
+	</script>
+</body>
+</html>

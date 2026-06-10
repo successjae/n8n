@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Partners — AMXXR | Sponsorships &amp; Brand Collaborations</title>
+	<meta name="description" content="Partner with AMXXR — sponsorships, brand campaigns and collaborations with an authentic, soul-rooted hip-hop brand backed by Pete Rock's Tru Soul Records.">
+	<meta name="theme-color" content="#0b0a08">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+	<section class="page-hero">
+		<div class="hero-bg"></div>
+		<div class="wrap">
+			<span class="kicker">Brand Partnerships</span>
+			<h1>Partner<br>with AMXXR</h1>
+			<p>Authenticity you can't manufacture: Mount Vernon roots, a Pete Rock co-sign, and a fan base that actually shows up.</p>
+		</div>
+	</section>
+
+	<!-- WHY -->
+	<section>
+		<div class="wrap">
+			<span class="kicker reveal">The Pitch</span>
+			<h2 class="section-title reveal">Why brands work with AMXXR</h2>
+			<div class="stat-strip reveal" style="margin:36px 0">
+				<div class="stat"><div class="n">4+</div><div class="l">Projects Released</div></div>
+				<div class="stat"><div class="n">13K+</div><div class="l">Instagram Following</div></div>
+				<div class="stat"><div class="n">100%</div><div class="l">Pete Rock Produced Debut</div></div>
+			</div>
+			<div class="grid grid-3">
+				<div class="card reveal"><div class="card-body"><h3>Credibility</h3><p>First signee to a hip-hop legend's label. Culture-first positioning that money can't buy.</p></div></div>
+				<div class="card reveal reveal-d1"><div class="card-body"><h3>Placement</h3><p>Logo and campaign placement across this site, video content, live shows and limited merch drops.</p></div></div>
+				<div class="card reveal reveal-d2"><div class="card-body"><h3>Activation</h3><p>Custom campaigns: sponsored video segments, event presence, co-branded capsules, fan giveaways.</p></div></div>
+			</div>
+		</div>
+	</section>
+
+	<!-- CURRENT PARTNERS -->
+	<section class="alt">
+		<div class="wrap">
+			<span class="kicker reveal">The Family</span>
+			<h2 class="section-title reveal">Current partners</h2>
+			<div class="grid grid-3" id="partnerGrid"></div>
+		</div>
+	</section>
+
+	<!-- PACKAGES -->
+	<section>
+		<div class="wrap">
+			<span class="kicker reveal">Packages</span>
+			<h2 class="section-title reveal">Ways to plug in</h2>
+			<div class="grid grid-3">
+				<div class="card reveal"><div class="card-body">
+					<span class="tag">Supporter</span><h3>Logo Placement</h3>
+					<p>Brand logo on the partners row, show flyers and recap content.</p>
+				</div></div>
+				<div class="card reveal reveal-d1" style="border-color:rgba(224,167,60,.5)"><div class="card-body">
+					<span class="tag hot">Campaign</span><h3>Content Integration</h3>
+					<p>Sponsored video segments, dedicated posts to the fan list, co-branded giveaways.</p>
+				</div></div>
+				<div class="card reveal reveal-d2"><div class="card-body">
+					<span class="tag">Presenting</span><h3>Tour / Drop Sponsor</h3>
+					<p>Naming rights on a show run or limited merch capsule. Full-funnel exposure.</p>
+				</div></div>
+			</div>
+			<p class="reveal" style="margin-top:24px;color:var(--cream-dim)">Need numbers? <a href="press.html">Download the media kit</a> or request the full sponsorship deck below.</p>
+		</div>
+	</section>
+
+	<!-- INQUIRY -->
+	<section class="alt" id="inquiry">
+		<div class="wrap">
+			<div class="panel reveal" style="max-width:720px;margin:0 auto">
+				<span class="kicker">Inquiry</span>
+				<h2 class="section-title" style="font-size:clamp(1.8rem,5vw,2.8rem)">Start the conversation</h2>
+				<form data-fan-form data-source="sponsor inquiry" data-tags="sponsor-lead" data-success-msg="Inquiry received — the team will reach out.">
+					<div class="grid grid-2" style="gap:14px">
+						<div class="field"><label>Contact name *</label><input name="name" required></div>
+						<div class="field"><label>Brand / Company *</label><input name="social" required placeholder="Company name"></div>
+						<div class="field"><label>Email *</label><input type="email" name="email" required></div>
+						<div class="field"><label>Phone</label><input type="tel" name="phone"></div>
+					</div>
+					<div class="field"><label>What kind of partnership?</label>
+						<select name="city">
+							<option>Logo placement</option>
+							<option>Content integration</option>
+							<option>Tour / drop sponsorship</option>
+							<option>Co-branded merch capsule</option>
+							<option>Other</option>
+						</select>
+					</div>
+					<div class="field"><label>Tell us about your brand &amp; goals</label><textarea name="country"></textarea></div>
+					<button class="btn btn-solid" type="submit" style="width:100%">Send Partnership Inquiry</button>
+				</form>
+				<div class="form-success">Received. The team reviews every serious inquiry within 48 hours — <strong>partners@amxxr.com</strong> if it's urgent.</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="assets/js/data.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script src="assets/js/store.js"></script>
+	<script>
+	(() => {
+		const A = window.AMXXR;
+		document.getElementById('partnerGrid').innerHTML = A.SPONSORS.map(s => `
+			<a class="card reveal" href="${s.link}" ${s.link.startsWith('http') ? 'target="_blank" rel="noopener"' : ''} style="display:block" onclick="AMXXR_CRM.bump('sponsorClicks')">
+				<div class="card-body">
+					<span class="tag ${s.tier === 'open' ? 'hot' : ''}">${s.role}</span>
+					<h3 style="color:var(--cream)">${s.name}</h3>
+					<p>${s.blurb}</p>
+				</div>
+			</a>`).join('');
+		AMXXR_observeReveals();
+	})();
+	</script>
+</body>
+</html>

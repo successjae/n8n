@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Videos — AMXXR | Official Videos, Interviews &amp; Behind the Scenes</title>
+	<meta name="description" content="The AMXXR video library — official music videos with Pete Rock, interviews, performances and behind-the-scenes from the Tru Soul sessions.">
+	<meta name="theme-color" content="#0b0a08">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<style>
+		.carousel { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 14px; }
+		.carousel::-webkit-scrollbar { height: 6px; }
+		.carousel::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+		.carousel .card { min-width: min(420px, 82vw); scroll-snap-align: start; }
+	</style>
+</head>
+<body>
+
+	<section class="page-hero">
+		<div class="hero-bg"></div>
+		<div class="wrap">
+			<span class="kicker">The Video Library</span>
+			<h1>Videos</h1>
+			<p>Official visuals, live energy, real conversations. Curated — only what builds the story.</p>
+		</div>
+	</section>
+
+	<!-- FEATURED CAROUSEL -->
+	<section>
+		<div class="wrap">
+			<span class="kicker reveal">Featured</span>
+			<h2 class="section-title reveal">Watch first</h2>
+			<div class="carousel reveal" id="featuredCarousel"></div>
+		</div>
+	</section>
+
+	<!-- LIBRARY -->
+	<section class="alt">
+		<div class="wrap">
+			<span class="kicker reveal">Full Library</span>
+			<h2 class="section-title reveal">Every frame</h2>
+			<div class="chips reveal" id="catChips"></div>
+			<div class="grid grid-3" id="videoGrid"></div>
+		</div>
+	</section>
+
+	<!-- CTA -->
+	<section>
+		<div class="wrap">
+			<div class="panel reveal" style="text-align:center;max-width:700px;margin:0 auto">
+				<h2 class="section-title" style="font-size:clamp(1.6rem,4vw,2.6rem)">Never miss a premiere</h2>
+				<p style="color:var(--cream-dim);margin-bottom:24px">Fan list members get every video first — sometimes before YouTube.</p>
+				<form class="inline-form" data-fan-form data-source="videos page" data-tags="video-alerts" style="max-width:460px;margin:0 auto">
+					<input type="email" name="email" placeholder="your@email.com" required aria-label="Email address">
+					<button class="btn btn-solid" type="submit">Get Alerts</button>
+				</form>
+				<div class="form-success">You'll see the next one first.</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="assets/js/data.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script src="assets/js/store.js"></script>
+	<script>
+	(() => {
+		const A = window.AMXXR;
+
+		const vidCard = (v, large) => `
+			<article class="card reveal">
+				<div class="vid-thumb" data-yt="${v.id}" data-title="${v.title}">
+					<img src="${AMXXR_ytThumb(v.id)}" alt="${v.title}" loading="lazy">
+					<div class="play"><span>▶</span></div>
+				</div>
+				<div class="card-body">
+					<span class="tag">${(A.VIDEO_CATEGORIES.find(c => c.key === v.category) || {}).label || v.category}</span>
+					<h3 style="font-size:${large ? '1.3rem' : '1.05rem'}">${v.title}</h3>
+					<p>${v.blurb}</p>
+				</div>
+			</article>`;
+
+		document.getElementById('featuredCarousel').innerHTML =
+			A.VIDEOS.filter(v => v.featured).map(v => vidCard(v, true)).join('');
+
+		const chips = document.getElementById('catChips');
+		chips.innerHTML = A.VIDEO_CATEGORIES.map((c, i) =>
+			`<button class="chip ${i === 0 ? 'active' : ''}" data-cat="${c.key}">${c.label}</button>`).join('');
+
+		const grid = document.getElementById('videoGrid');
+		const render = (cat) => {
+			const list = cat === 'all' ? A.VIDEOS : A.VIDEOS.filter(v => v.category === cat);
+			grid.innerHTML = list.map(v => vidCard(v, false)).join('');
+			grid.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+		};
+		chips.addEventListener('click', (e) => {
+			const b = e.target.closest('.chip');
+			if (!b) return;
+			chips.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+			b.classList.add('active');
+			render(b.dataset.cat);
+		});
+		render('all');
+
+		AMXXR_observeReveals();
+	})();
+	</script>
+</body>
+</html>

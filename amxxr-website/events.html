@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Shows — AMXXR | Tour Dates, Tickets &amp; RSVP</title>
+	<meta name="description" content="AMXXR live — upcoming shows, tickets, RSVPs and recaps from past performances in New York and beyond.">
+	<meta name="theme-color" content="#0b0a08">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+	<section class="page-hero">
+		<div class="hero-bg"></div>
+		<div class="wrap">
+			<span class="kicker">Live</span>
+			<h1>Shows</h1>
+			<p>The records hit different live. Catch the energy in the room — VIP fan club members get presale first.</p>
+		</div>
+	</section>
+
+	<!-- UPCOMING -->
+	<section>
+		<div class="wrap">
+			<span class="kicker reveal">On the Calendar</span>
+			<h2 class="section-title reveal">Upcoming</h2>
+			<div id="upcomingList" class="reveal"></div>
+		</div>
+	</section>
+
+	<!-- CITY ALERTS -->
+	<section class="alt">
+		<div class="wrap">
+			<div class="panel reveal" style="max-width:720px;margin:0 auto;text-align:center">
+				<span class="kicker" style="justify-content:center">City Alerts</span>
+				<h2 class="section-title" style="font-size:clamp(1.6rem,4vw,2.6rem)">Want a show near you?</h2>
+				<p style="color:var(--cream-dim);margin-bottom:24px">Drop your city. Routing decisions follow the demand — this is literally how stops get added.</p>
+				<form data-fan-form data-source="event signup" data-tags="city-alerts" style="max-width:520px;margin:0 auto">
+					<div class="grid grid-2" style="gap:14px">
+						<div class="field"><label>Email</label><input type="email" name="email" required></div>
+						<div class="field"><label>City</label><input name="city" required placeholder="e.g. Atlanta, GA"></div>
+					</div>
+					<button class="btn btn-solid" type="submit" style="width:100%">Put My City on the Map</button>
+				</form>
+				<div class="form-success">Logged. Every signup is a vote for your city.</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- PAST -->
+	<section>
+		<div class="wrap">
+			<span class="kicker reveal">The Archive</span>
+			<h2 class="section-title reveal">Past shows</h2>
+			<div id="pastList" class="reveal"></div>
+		</div>
+	</section>
+
+	<script src="assets/js/data.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script src="assets/js/store.js"></script>
+	<script>
+	(() => {
+		const A = window.AMXXR;
+		const row = (e, past) => {
+			const d = new Date(e.date + 'T12:00:00');
+			return `<div class="event-row">
+				<div class="event-date">
+					<div class="d">${d.getDate()}</div>
+					<div class="m">${d.toLocaleDateString('en-US', { month: 'short' })} ${d.getFullYear()}</div>
+				</div>
+				<div class="event-info">
+					<h3>${e.name}</h3>
+					<p>${e.venue} · ${e.city}${e.note ? ' — ' + e.note : ''}</p>
+				</div>
+				${past
+					? '<span class="tag">Archive</span>'
+					: `<div style="display:flex;gap:10px">
+						<a class="btn btn-sm btn-solid" href="${e.tickets || '#'}">Tickets</a>
+						<button class="btn btn-sm btn-ghost" onclick="AMXXR_rsvp('${e.id}','${e.name.replace(/'/g, '')}')">RSVP</button>
+					</div>`}
+			</div>`;
+		};
+		document.getElementById('upcomingList').innerHTML =
+			A.EVENTS.filter(e => e.status === 'upcoming').map(e => row(e, false)).join('')
+			|| '<p style="color:var(--cream-faint)">New dates announcing soon — join the fan list to hear first.</p>';
+		document.getElementById('pastList').innerHTML =
+			A.EVENTS.filter(e => e.status === 'past').map(e => row(e, true)).join('');
+
+		window.AMXXR_rsvp = (id, name) => {
+			const email = prompt(`RSVP for "${name}" — enter your email:`);
+			if (!email || !email.includes('@')) return;
+			AMXXR_CRM.addFan({ email, source: 'event', tags: ['rsvp', 'event:' + id] });
+			AMXXR_toast('RSVP confirmed — see you there.');
+		};
+
+		AMXXR_observeReveals();
+	})();
+	</script>
+</body>
+</html>

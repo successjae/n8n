@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>AMXXR — Official Site | Peace Beloved | Tru Soul Records</title>
+	<meta name="description" content="The official home of AMXXR (Peace Beloved) — Mount Vernon, NY MC and first artist signed to Pete Rock's Tru Soul Records. Music, videos, merch, shows, and the BELOVED fan club.">
+	<meta property="og:title" content="AMXXR — Official Site">
+	<meta property="og:description" content="Soul heavy. City raised. Peace Beloved. Music, videos, merch and more from AMXXR.">
+	<meta property="og:type" content="website">
+	<meta name="theme-color" content="#0b0a08">
+	<link rel="canonical" href="https://amxxr.com/">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "MusicGroup",
+		"name": "AMXXR",
+		"alternateName": "Peace Beloved",
+		"genre": "Hip-Hop",
+		"foundingLocation": "Mount Vernon, NY",
+		"recordLabel": "Tru Soul Records",
+		"sameAs": [
+			"https://open.spotify.com/artist/1agA5fqFnuIeibCsM2t4iR",
+			"https://music.apple.com/us/artist/amxxr/1256007782",
+			"https://amxxr.bandcamp.com/",
+			"https://soundcloud.com/peaceblvd",
+			"https://www.instagram.com/a.m.x.x.r/"
+		]
+	}
+	</script>
+</head>
+<body>
+
+	<!-- HERO -->
+	<section class="hero" style="padding-top:0">
+		<div class="hero-bg"></div>
+		<div class="hero-rings"></div>
+		<div class="wrap" style="position:relative">
+			<p class="hero-aka">Peace Beloved · Mount Vernon, NY · Tru Soul Records</p>
+			<h1 class="hero-name">AMXXR</h1>
+			<p class="hero-tag">Soul Heavy. City Raised. Peace Beloved.</p>
+			<div class="hero-ctas">
+				<a class="btn btn-solid" href="music.html">Listen Now</a>
+				<a class="btn btn-crimson" href="merch.html">Shop the Drop</a>
+				<a class="btn btn-ghost" href="videos.html">Watch Videos</a>
+				<a class="btn btn-ghost" href="fanclub.html">Join the Fan List</a>
+				<a class="btn btn-ghost" href="contact.html">Book AMXXR</a>
+			</div>
+		</div>
+		<span class="hero-scroll">Scroll</span>
+	</section>
+
+	<!-- MARQUEE -->
+	<div class="marquee" aria-hidden="true">
+		<div class="marquee-track" id="marquee"></div>
+	</div>
+
+	<!-- FEATURED VIDEO -->
+	<section>
+		<div class="wrap">
+			<div class="split">
+				<div class="reveal">
+					<span class="kicker">Latest Visual</span>
+					<h2 class="section-title">Watch<br>the latest</h2>
+					<p class="section-sub" style="margin-bottom:28px">Official videos from the Tru Soul vault — every frame produced with the same intent as the records.</p>
+					<a class="btn" href="videos.html">All Videos</a>
+				</div>
+				<div class="card reveal reveal-d1" id="featuredVideo"></div>
+			</div>
+		</div>
+	</section>
+
+	<!-- FEATURED MUSIC -->
+	<section class="alt">
+		<div class="wrap">
+			<span class="kicker reveal">The Catalog</span>
+			<h2 class="section-title reveal">Featured Releases</h2>
+			<p class="section-sub reveal">Stream everywhere. Own it on Bandcamp — that's where it counts most.</p>
+			<div class="grid grid-4" id="releaseGrid"></div>
+			<div style="margin-top:36px" class="reveal">
+				<a class="btn btn-solid" href="music.html">Enter the Music Hub</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- FEATURED MERCH -->
+	<section>
+		<div class="wrap">
+			<span class="kicker reveal">The Shop</span>
+			<h2 class="section-title reveal">Wear the movement</h2>
+			<p class="section-sub reveal">Limited runs, heavyweight blanks, numbered drops. When it's gone, it's gone.</p>
+			<div class="grid grid-3" id="featuredMerch"></div>
+			<div style="margin-top:36px" class="reveal">
+				<a class="btn btn-crimson" href="merch.html">Shop Everything</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- ANNOUNCEMENTS -->
+	<section class="alt">
+		<div class="wrap">
+			<span class="kicker reveal">Bulletin</span>
+			<h2 class="section-title reveal">Latest from camp</h2>
+			<div id="announceList" class="reveal"></div>
+		</div>
+	</section>
+
+	<!-- PARTNERS STRIP -->
+	<section>
+		<div class="wrap">
+			<span class="kicker reveal">Family &amp; Partners</span>
+			<h2 class="section-title reveal">Backed by the culture</h2>
+			<div class="grid grid-3" id="sponsorStrip" style="margin-top:30px"></div>
+			<p class="reveal" style="margin-top:28px;color:var(--cream-dim)">Want your brand in this row? <a href="sponsors.html">Partner with AMXXR →</a></p>
+		</div>
+	</section>
+
+	<!-- SIGNUP -->
+	<section class="alt">
+		<div class="wrap">
+			<div class="panel reveal" style="text-align:center;max-width:760px;margin:0 auto">
+				<span class="kicker" style="justify-content:center">The BELOVED List</span>
+				<h2 class="section-title" style="font-size:clamp(1.8rem,5vw,3rem)">Get Exclusive Access</h2>
+				<p style="color:var(--cream-dim);max-width:480px;margin:0 auto 28px">Unreleased music, early merch drops, presale codes and city-by-city show alerts. Email and SMS — no spam, just soul.</p>
+				<form class="inline-form" data-fan-form data-source="homepage" data-tags="newsletter" style="max-width:480px;margin:0 auto">
+					<input type="email" name="email" placeholder="your@email.com" required aria-label="Email address">
+					<button class="btn btn-solid" type="submit">Join Free</button>
+				</form>
+				<div class="form-success">You're in. Check your inbox for the welcome code <strong>BELOVED10</strong>.</div>
+				<p class="form-note">Want SMS alerts &amp; VIP? <a href="fanclub.html">Go deeper →</a></p>
+			</div>
+		</div>
+	</section>
+
+	<script src="assets/js/data.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script src="assets/js/store.js"></script>
+	<script>
+	(() => {
+		const A = window.AMXXR;
+
+		// Marquee
+		const items = ['NEW ALBUM — THE CITY NEVER SLEEPS BELOVED', 'PROD. BY <em>PETE ROCK</em>', 'TRU SOUL RECORDS', 'MOUNT VERNON, NY', 'LIMITED DROP <em>LIVE NOW</em>'];
+		document.getElementById('marquee').innerHTML = (items.join(' &nbsp;✦&nbsp; ') + ' &nbsp;✦&nbsp; ').repeat(2)
+			.split('✦').map(s => `<span>${s.trim()}</span>`).join('<span>✦</span>');
+
+		// Featured video
+		const fv = A.VIDEOS.find(v => v.featured && v.category === 'official') || A.VIDEOS[0];
+		document.getElementById('featuredVideo').innerHTML = `
+			<div class="vid-thumb" data-yt="${fv.id}" data-title="${fv.title}">
+				<img src="${AMXXR_ytThumb(fv.id)}" alt="${fv.title}" loading="lazy">
+				<div class="play"><span>▶</span></div>
+			</div>
+			<div class="card-body"><h3>${fv.title}</h3><p>${fv.blurb}</p></div>`;
+
+		// Releases
+		document.getElementById('releaseGrid').innerHTML = A.RELEASES.map((r, i) => `
+			<article class="card reveal reveal-d${i % 4}">
+				<div class="art" style="--art-accent:${r.accent}"><span class="art-label">${r.title}</span></div>
+				<div class="card-body">
+					<span class="tag">${r.type} · ${r.year}</span>
+					<h3>${r.title}</h3>
+					<p>${r.blurb}</p>
+					<div style="display:flex;gap:10px;margin-top:16px">
+						<a class="btn btn-sm btn-solid" href="${r.stream}" target="_blank" rel="noopener">Stream</a>
+						<a class="btn btn-sm btn-ghost" href="${r.buy}" target="_blank" rel="noopener">Buy</a>
+					</div>
+				</div>
+			</article>`).join('');
+
+		// Featured merch
+		document.getElementById('featuredMerch').innerHTML =
+			A.PRODUCTS.filter(p => p.featured).slice(0, 3).map(AMXXR_productCard).join('');
+
+		// Announcements
+		document.getElementById('announceList').innerHTML = A.ANNOUNCEMENTS.map(a => `
+			<div class="announce">
+				<span class="announce-date">${AMXXR_fmtDate(a.date)}</span>
+				<div><span class="tag ${a.tag === 'NEW DROP' ? 'hot' : ''}">${a.tag}</span><h3>${a.title}</h3><p>${a.body}</p></div>
+				<a class="btn btn-sm" href="${a.link}">${a.cta}</a>
+			</div>`).join('');
+
+		// Sponsors
+		document.getElementById('sponsorStrip').innerHTML = A.SPONSORS.map(s => `
+			<a class="card reveal" href="${s.link}" ${s.link.startsWith('http') ? 'target="_blank" rel="noopener"' : ''} style="display:block">
+				<div class="card-body">
+					<span class="tag">${s.role}</span>
+					<h3 style="color:var(--cream)">${s.name}</h3>
+					<p>${s.blurb}</p>
+				</div>
+			</a>`).join('');
+
+		AMXXR_observeReveals();
+	})();
+	</script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Press &amp; Media Kit — AMXXR</title>
+	<meta name="description" content="AMXXR press resources — downloadable media kit, bio, photos, logos, music and video links, press coverage and industry contacts.">
+	<meta name="theme-color" content="#0b0a08">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+	<section class="page-hero">
+		<div class="hero-bg"></div>
+		<div class="wrap">
+			<span class="kicker">For Industry &amp; Media</span>
+			<h1>Press Kit</h1>
+			<p>Everything an editor, booker, A&amp;R or brand needs — in one place, ready to publish.</p>
+		</div>
+	</section>
+
+	<!-- ONE SHEET -->
+	<section>
+		<div class="wrap">
+			<div class="split" style="align-items:start">
+				<div class="reveal">
+					<span class="kicker">One-Sheet</span>
+					<h2 class="section-title">AMXXR<br>at a glance</h2>
+					<button class="btn btn-solid" onclick="AMXXR_downloadKit()" style="margin-top:14px">Download Media Kit</button>
+					<p class="form-note">Text one-sheet (instant). Hi-res photo &amp; logo pack available on request via press@amxxr.com.</p>
+				</div>
+				<div class="reveal reveal-d1">
+					<div class="card"><div class="card-body">
+						<h3 style="margin-bottom:14px">Fast Facts</h3>
+						<ul style="list-style:none;color:var(--cream-dim);font-size:14px;line-height:2.1">
+							<li><strong style="color:var(--gold)">Artist:</strong> AMXXR (aka Peace Beloved)</li>
+							<li><strong style="color:var(--gold)">Base:</strong> Mount Vernon, NY</li>
+							<li><strong style="color:var(--gold)">Label:</strong> Tru Soul Records (Pete Rock) — first signee</li>
+							<li><strong style="color:var(--gold)">Genre:</strong> Hip-Hop / Soul</li>
+							<li><strong style="color:var(--gold)">Key works:</strong> 21 Grams (2021), Dope Boy Soul (2021), Beloved In The Sky (2022), The City Never Sleeps Beloved (2024)</li>
+							<li><strong style="color:var(--gold)">Co-sign:</strong> "It's like a marriage with his lyrics and my beats." — Pete Rock</li>
+						</ul>
+					</div></div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ASSETS -->
+	<section class="alt">
+		<div class="wrap">
+			<span class="kicker reveal">Assets &amp; Links</span>
+			<h2 class="section-title reveal">Grab what you need</h2>
+			<div class="grid grid-3">
+				<div class="card reveal"><div class="card-body">
+					<h3>🎵 Music Links</h3>
+					<p>Streaming + purchase links for the full catalog.</p>
+					<div class="socials-row" id="pressMusic" style="margin-top:16px"></div>
+				</div></div>
+				<div class="card reveal reveal-d1"><div class="card-body">
+					<h3>🎬 Video Links</h3>
+					<p>Official videos and key interviews, embed-ready.</p>
+					<div style="margin-top:16px"><a class="btn btn-sm" href="videos.html">Open Video Library</a></div>
+				</div></div>
+				<div class="card reveal reveal-d2"><div class="card-body">
+					<h3>📸 Photos &amp; Logos</h3>
+					<p>Hi-res press photos, wordmark and logo lockups in light/dark variants.</p>
+					<div style="margin-top:16px"><a class="btn btn-sm btn-ghost" href="mailto:press@amxxr.com?subject=AMXXR%20Photo%20Pack%20Request">Request Pack</a></div>
+				</div></div>
+			</div>
+		</div>
+	</section>
+
+	<!-- COVERAGE -->
+	<section>
+		<div class="wrap">
+			<span class="kicker reveal">Coverage</span>
+			<h2 class="section-title reveal">Selected press &amp; interviews</h2>
+			<div class="grid grid-2" id="pressVideos"></div>
+		</div>
+	</section>
+
+	<!-- CONTACTS -->
+	<section class="alt">
+		<div class="wrap">
+			<span class="kicker reveal">Contacts</span>
+			<h2 class="section-title reveal">Direct lines</h2>
+			<div class="grid grid-4" id="contactCards"></div>
+		</div>
+	</section>
+
+	<script src="assets/js/data.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script src="assets/js/store.js"></script>
+	<script>
+	(() => {
+		const A = window.AMXXR, S = A.SITE;
+
+		document.getElementById('pressMusic').innerHTML = [
+			['Spotify', S.socials.spotify], ['Apple Music', S.socials.appleMusic],
+			['Bandcamp', S.socials.bandcamp], ['SoundCloud', S.socials.soundcloud],
+		].map(([l, u]) => `<a href="${u}" target="_blank" rel="noopener">${l}</a>`).join('');
+
+		document.getElementById('pressVideos').innerHTML = A.VIDEOS.filter(v => v.category === 'interview').map(v => `
+			<article class="card reveal">
+				<div class="vid-thumb" data-yt="${v.id}" data-title="${v.title}">
+					<img src="${AMXXR_ytThumb(v.id)}" alt="${v.title}" loading="lazy">
+					<div class="play"><span>▶</span></div>
+				</div>
+				<div class="card-body"><h3 style="font-size:1.05rem">${v.title}</h3><p>${v.blurb}</p></div>
+			</article>`).join('');
+
+		document.getElementById('contactCards').innerHTML = [
+			['Booking', S.contacts.booking, 'Live shows & appearances'],
+			['Management', S.contacts.management, 'Threesixty Entertainment'],
+			['Press', S.contacts.press, 'Interviews & media'],
+			['Sponsorships', S.contacts.sponsors, 'Brand partnerships'],
+		].map(([t, e, d]) => `
+			<div class="card reveal"><div class="card-body">
+				<span class="tag">${t}</span>
+				<p style="color:var(--cream)">${d}</p>
+				<a href="mailto:${e}" style="font-size:14px">${e}</a>
+			</div></div>`).join('');
+
+		window.AMXXR_downloadKit = () => {
+			const kit = [
+				'AMXXR — OFFICIAL MEDIA KIT', '='.repeat(40), '',
+				'ARTIST: AMXXR (aka Peace Beloved)',
+				'BASE: Mount Vernon, NY',
+				'LABEL: Tru Soul Records (Pete Rock) — first artist signed', '',
+				'BIO:',
+				'AMXXR is an MC from Mount Vernon, NY — the soil that produced Heavy D and Pete Rock.',
+				"In 2021 he became the first artist signed to Pete Rock's Tru Soul Records, debuting with",
+				"the all-Pete-Rock-produced mixtape '21 Grams: Worth It's Weight In Soul' and the",
+				"full-length 'Dope Boy Soul.' He followed with 'Beloved In The Sky' (2022) and",
+				"'THE CITY NEVER SLEEPS BELOVED' (2024).", '',
+				'CO-SIGN:',
+				'"It\'s like a marriage with his lyrics and my beats; it is very impressive." — Pete Rock', '',
+				'MUSIC:',
+				'Spotify: ' + S.socials.spotify,
+				'Apple Music: ' + S.socials.appleMusic,
+				'Bandcamp: ' + S.socials.bandcamp,
+				'SoundCloud: ' + S.socials.soundcloud, '',
+				'SOCIAL:',
+				'Instagram: ' + S.socials.instagram, '',
+				'CONTACTS:',
+				'Booking: ' + S.contacts.booking,
+				'Management: ' + S.contacts.management + ' (Threesixty Entertainment)',
+				'Press: ' + S.contacts.press,
+				'Sponsorships: ' + S.contacts.sponsors,
+			].join('\n');
+			const a = document.createElement('a');
+			a.href = URL.createObjectURL(new Blob([kit], { type: 'text/plain' }));
+			a.download = 'AMXXR-media-kit.txt';
+			a.click();
+			AMXXR_CRM.bump('mediaKitDownloads');
+		};
+
+		AMXXR_observeReveals();
+	})();
+	</script>
+</body>
+</html>

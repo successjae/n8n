@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>About — AMXXR | Peace Beloved | The Story</title>
+	<meta name="description" content="The story of AMXXR — Mount Vernon, NY MC, first artist signed to Pete Rock's Tru Soul Records. Soul-rooted hip-hop, clever wordplay and thought-provoking storytelling.">
+	<meta name="theme-color" content="#0b0a08">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+	<section class="page-hero">
+		<div class="hero-bg"></div>
+		<div class="wrap">
+			<span class="kicker">The Story</span>
+			<h1>About<br>AMXXR</h1>
+			<p>Peace Beloved. Mount Vernon raised. Soul certified.</p>
+		</div>
+	</section>
+
+	<!-- BIO -->
+	<section>
+		<div class="wrap">
+			<div class="split" style="align-items:start">
+				<div class="reveal">
+					<span class="kicker">Biography</span>
+					<h2 class="section-title">Worth its<br>weight in soul</h2>
+				</div>
+				<div class="reveal reveal-d1" style="color:var(--cream-dim);font-size:17px;line-height:1.8">
+					<p style="margin-bottom:20px"><strong style="color:var(--cream)">AMXXR</strong> — also known as <strong style="color:var(--gold)">Peace Beloved</strong> — is an MC from Mount Vernon, New York: the same square mile of soil that gave hip-hop Heavy D and Pete Rock. That lineage isn't a coincidence. It's the inheritance.</p>
+					<p style="margin-bottom:20px">In 2021, AMXXR became the <strong style="color:var(--cream)">first artist signed to Pete Rock's Tru Soul Records</strong>, announcing the partnership with the mixtape <em>21 Grams: Worth It's Weight In Soul</em> — every beat by the Soul Brother #1, every bar by AMXXR. The full-length <em>Dope Boy Soul</em> followed the same year, and critics pointed to the distinct flow, clever wordplay and thought-provoking storytelling that earned him the seat.</p>
+					<p style="margin-bottom:20px"><em>Beloved In The Sky</em> (2022) deepened the Peace Beloved alias — grief, faith and elevation over heavyweight soul. <em>THE CITY NEVER SLEEPS BELOVED</em> (2024) is the most complete statement yet: the city after midnight, told by someone who never left it.</p>
+					<p>The mission is simple: keep soul music's bloodline alive in modern hip-hop, build directly with the fans who carry it, and make every record worth its weight.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- PRESS QUOTES -->
+	<section class="alt">
+		<div class="wrap">
+			<span class="kicker reveal">Co-Signs</span>
+			<h2 class="section-title reveal">In their words</h2>
+			<div id="quotes" class="reveal"></div>
+		</div>
+	</section>
+
+	<!-- IDENTITY -->
+	<section>
+		<div class="wrap">
+			<span class="kicker reveal">The Brand</span>
+			<h2 class="section-title reveal">What BELOVED means</h2>
+			<div class="grid grid-3">
+				<div class="card reveal"><div class="card-body"><h3>Sound</h3><p>Soul samples, live warmth, drums that knock. Wordplay built for replay value — storytelling built for memory.</p></div></div>
+				<div class="card reveal reveal-d1"><div class="card-body"><h3>Influences</h3><p>The Mount Vernon school: Heavy D's charisma, Pete Rock &amp; C.L. Smooth's chemistry, and every soul record that raised the block.</p></div></div>
+				<div class="card reveal reveal-d2"><div class="card-body"><h3>Mission</h3><p>Independence with major-level standards. Direct lines to the fans. Peace, even when the city never sleeps.</p></div></div>
+			</div>
+		</div>
+	</section>
+
+	<!-- TIMELINE -->
+	<section class="alt">
+		<div class="wrap">
+			<span class="kicker reveal">Milestones</span>
+			<h2 class="section-title reveal">The road so far</h2>
+			<div class="timeline reveal" id="timeline"></div>
+		</div>
+	</section>
+
+	<!-- CTA -->
+	<section>
+		<div class="wrap" style="text-align:center">
+			<h2 class="section-title reveal">Be part of the next chapter</h2>
+			<div class="reveal" style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:26px">
+				<a class="btn btn-solid" href="music.html">Listen Now</a>
+				<a class="btn" href="fanclub.html">Join the Fan List</a>
+				<a class="btn btn-ghost" href="press.html">Press Kit</a>
+			</div>
+		</div>
+	</section>
+
+	<script src="assets/js/data.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script src="assets/js/store.js"></script>
+	<script>
+	(() => {
+		const A = window.AMXXR;
+		document.getElementById('quotes').innerHTML = A.PRESS_QUOTES.map(q => `
+			<div class="quote">
+				<blockquote>“${q.quote}”</blockquote>
+				<cite>— ${q.source}</cite>
+				<span class="ctx">${q.context}</span>
+			</div>`).join('');
+		document.getElementById('timeline').innerHTML = A.TIMELINE.map(t => `
+			<div class="tl-item"><div class="tl-year">${t.year}</div><p>${t.text}</p></div>`).join('');
+		AMXXR_observeReveals();
+	})();
+	</script>
+</body>
+</html>

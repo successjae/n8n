@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Music — AMXXR | Stream &amp; Buy | Tru Soul Records</title>
+	<meta name="description" content="Stream and buy AMXXR's catalog — 21 Grams, Dope Boy Soul, Beloved In The Sky, and THE CITY NEVER SLEEPS BELOVED. Spotify, Apple Music, Bandcamp, SoundCloud and exclusive drops.">
+	<meta name="theme-color" content="#0b0a08">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+	<section class="page-hero">
+		<div class="hero-bg"></div>
+		<div class="wrap">
+			<span class="kicker">The Music Hub</span>
+			<h1>Music</h1>
+			<p>Every record, every platform, one place. Stream it anywhere — but owning it on Bandcamp puts the most back into the music.</p>
+		</div>
+	</section>
+
+	<!-- LIVE PLAYER -->
+	<section>
+		<div class="wrap">
+			<div class="split">
+				<div class="reveal">
+					<span class="kicker">Now Streaming</span>
+					<h2 class="section-title">Press play</h2>
+					<p class="section-sub" style="margin-bottom:28px">The full AMXXR artist catalog, straight from Spotify. Follow the profile so every release lands in your library day one.</p>
+					<div class="socials-row" id="platformRow"></div>
+				</div>
+				<div class="reveal reveal-d1">
+					<iframe style="border-radius:14px;border:1px solid var(--line)" src="https://open.spotify.com/embed/artist/1agA5fqFnuIeibCsM2t4iR?utm_source=generator&theme=0" width="100%" height="420" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="AMXXR on Spotify"></iframe>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- DISCOGRAPHY -->
+	<section class="alt">
+		<div class="wrap">
+			<span class="kicker reveal">Discography</span>
+			<h2 class="section-title reveal">The Catalog</h2>
+			<p class="section-sub reveal">From the first Tru Soul tape to the latest statement — produced with Pete Rock's heavyweight soul.</p>
+			<div class="grid grid-2" id="discoGrid"></div>
+		</div>
+	</section>
+
+	<!-- BANDCAMP / FULL ALBUM STREAM -->
+	<section>
+		<div class="wrap">
+			<div class="split">
+				<div class="card reveal" id="albumStream"></div>
+				<div class="reveal reveal-d1">
+					<span class="kicker">Direct Support</span>
+					<h2 class="section-title">Own it on Bandcamp</h2>
+					<p class="section-sub" style="margin-bottom:28px">Buying direct on Bandcamp is the strongest way to support the movement — lossless files, and most of every dollar goes to the artist.</p>
+					<a class="btn btn-solid" href="https://amxxr.bandcamp.com/" target="_blank" rel="noopener">AMXXR on Bandcamp</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- EXCLUSIVE DROP (email-gated) -->
+	<section class="alt">
+		<div class="wrap">
+			<div class="panel reveal" style="max-width:760px;margin:0 auto;text-align:center">
+				<span class="tag hot">Exclusive Drop</span>
+				<h2 class="section-title" style="font-size:clamp(1.8rem,5vw,3rem)">Unreleased: The Vault Session</h2>
+				<p style="color:var(--cream-dim);max-width:520px;margin:0 auto 26px">An unreleased cut from the Tru Soul sessions — free for the fan list. Drop your email and the download link hits your inbox instantly.</p>
+				<form class="inline-form" data-fan-form data-source="music download" data-tags="download,newsletter" data-success-msg="Check your inbox — the vault is open." style="max-width:480px;margin:0 auto" id="vaultForm">
+					<input type="email" name="email" placeholder="your@email.com" required aria-label="Email address">
+					<button class="btn btn-solid" type="submit">Unlock the Track</button>
+				</form>
+				<div class="form-success">The vault is open — download link sent. Welcome to BELOVED.</div>
+				<p class="form-note">Prefer to own the whole catalog in 24-bit? <a href="merch.html">Get the Digital Deluxe →</a></p>
+			</div>
+		</div>
+	</section>
+
+	<script src="assets/js/data.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script src="assets/js/store.js"></script>
+	<script>
+	(() => {
+		const A = window.AMXXR;
+		const S = A.SITE;
+
+		document.getElementById('platformRow').innerHTML = [
+			['Spotify', S.socials.spotify],
+			['Apple Music', S.socials.appleMusic],
+			['Bandcamp', S.socials.bandcamp],
+			['SoundCloud', S.socials.soundcloud],
+			['Tidal', S.socials.tidal],
+			['Deezer', S.socials.deezer],
+		].map(([l, u]) => `<a href="${u}" target="_blank" rel="noopener" onclick="AMXXR_CRM.bump('musicLinkClicks')">${l}</a>`).join('');
+
+		document.getElementById('discoGrid').innerHTML = A.RELEASES.map((r, i) => `
+			<article class="card reveal reveal-d${i % 2}">
+				<div class="art" style="--art-accent:${r.accent};aspect-ratio:21/9"><span class="art-label" style="font-size:1.5rem">${r.title}</span></div>
+				<div class="card-body">
+					<span class="tag">${r.type} · ${r.year}</span>
+					<h3>${r.title}</h3>
+					<p>${r.blurb}</p>
+					<div style="display:flex;gap:10px;margin-top:18px;flex-wrap:wrap">
+						<a class="btn btn-sm btn-solid" href="${r.stream}" target="_blank" rel="noopener" onclick="AMXXR_CRM.bump('musicLinkClicks')">Stream</a>
+						<a class="btn btn-sm btn-ghost" href="${r.buy}" target="_blank" rel="noopener" onclick="AMXXR_CRM.bump('musicLinkClicks')">Buy on Bandcamp</a>
+					</div>
+				</div>
+			</article>`).join('');
+
+		const full = A.VIDEOS.find(v => v.id === 'h-pXHNVLMEQ') || A.VIDEOS[0];
+		document.getElementById('albumStream').innerHTML = `
+			<div class="vid-thumb" data-yt="${full.id}" data-title="${full.title}">
+				<img src="${AMXXR_ytThumb(full.id)}" alt="${full.title}" loading="lazy">
+				<div class="play"><span>▶</span></div>
+			</div>
+			<div class="card-body"><h3>${full.title}</h3><p>${full.blurb}</p></div>`;
+
+		AMXXR_observeReveals();
+	})();
+	</script>
+</body>
+</html>
