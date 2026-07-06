@@ -16,8 +16,7 @@
     color: {{ s.text_color }};
     --pb-marquee-duration: {{ s.speed }}s;
   "
-  role="marquee"
-  aria-label="{{ 'sections.marquee.label' | t }}"
+  aria-hidden="true"
 >
   {%- comment -%} Track duplicated twice for a seamless -50% loop {%- endcomment -%}
   <div class="pb-marquee__track" aria-hidden="false">

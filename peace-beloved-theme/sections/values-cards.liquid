@@ -16,7 +16,10 @@
       {%- for block in section.blocks -%}
         {%- assign b = block.settings -%}
         <div class="pb-value-card pb-scheme-{{ b.card_scheme }} pb-reveal" {{ block.shopify_attributes }}>
-          <span class="pb-value-card__index">{{ forloop.index | prepend: '0' | slice: -2, 2 }} — {{ b.label | default: b.heading }}</span>
+          <span class="pb-value-card__index">
+            {%- assign n = forloop.index | prepend: '0' | slice: -2, 2 -%}
+            {{ n }}{% if b.label != blank %} — {{ b.label }}{% endif %}
+          </span>
           {%- if b.heading != blank -%}<h3 class="pb-value-card__title">{{ b.heading }}</h3>{%- endif -%}
           {%- if b.text != blank -%}<p class="pb-value-card__text">{{ b.text }}</p>{%- endif -%}
           {%- if b.link_label != blank and b.link != blank -%}

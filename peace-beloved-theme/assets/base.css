@@ -766,8 +766,8 @@ body.pb-no-scroll { overflow: hidden; }
   display: flex;
   align-items: flex-end;
   overflow: hidden;
-  color: var(--pb-white);
   min-height: var(--pb-hero-h, 78vh);
+  /* Text color is provided by the .pb-scheme-* class applied in the section. */
 }
 .pb-hero--full { min-height: 100vh; }
 .pb-hero--tall { min-height: 88vh; }
