@@ -1,0 +1,38 @@
+{%- comment -%}
+  Reusable button / link.
+  Accepts:
+    label       (string, required)   Button text
+    url         (string)             If present, renders <a>; otherwise <button>
+    style       (string)             primary | secondary | dark | blue | ghost   (default: primary)
+    size        (string)             '' | large
+    arrow       (boolean)            show trailing arrow icon
+    full        (boolean)            full width
+    type        (string)             button type when no url (default: button)
+    disabled    (boolean)
+    extra_class (string)
+    id          (string)
+{%- endcomment -%}
+{%- liquid
+  assign btn_style = style | default: 'primary'
+  assign classes = 'pb-btn pb-btn--' | append: btn_style
+  if size == 'large'
+    assign classes = classes | append: ' pb-btn--large'
+  endif
+  if full
+    assign classes = classes | append: ' pb-btn--full'
+  endif
+  if extra_class != blank
+    assign classes = classes | append: ' ' | append: extra_class
+  endif
+-%}
+{%- if url != blank -%}
+  <a href="{{ url }}" class="{{ classes }}"{% if id %} id="{{ id }}"{% endif %}{% if disabled %} aria-disabled="true"{% endif %}>
+    <span>{{ label }}</span>
+    {%- if arrow -%}{% render 'icon-arrow', class: 'pb-btn__arrow' %}{%- endif -%}
+  </a>
+{%- else -%}
+  <button type="{{ type | default: 'button' }}" class="{{ classes }}"{% if id %} id="{{ id }}"{% endif %}{% if disabled %} disabled{% endif %}>
+    <span>{{ label }}</span>
+    {%- if arrow -%}{% render 'icon-arrow', class: 'pb-btn__arrow' %}{%- endif -%}
+  </button>
+{%- endif -%}
