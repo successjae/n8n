@@ -1,0 +1,265 @@
+{%- comment -%} Peace Beloved — Main product {%- endcomment -%}
+{%- liquid
+  assign s = section.settings
+  assign product = product
+  assign current_variant = product.selected_or_first_available_variant
+  assign featured_media = current_variant.featured_media | default: product.featured_media
+-%}
+
+<section class="pb-section pb-scheme-white">
+  <div class="pb-container">
+    <div class="pb-product">
+
+      {%- comment -%} ---------- Media gallery ---------- {%- endcomment -%}
+      <div class="pb-product__gallery" data-product-gallery>
+        <div class="pb-product__media-main">
+          {%- if featured_media != blank -%}
+            <img
+              data-gallery-main
+              src="{{ featured_media | image_url: width: 1200 }}"
+              srcset="{{ featured_media | image_url: width: 700 }} 700w, {{ featured_media | image_url: width: 1200 }} 1200w, {{ featured_media | image_url: width: 1600 }} 1600w"
+              sizes="(min-width: 768px) 55vw, 100vw"
+              alt="{{ featured_media.alt | default: product.title | escape }}"
+              width="{{ featured_media.width }}" height="{{ featured_media.height }}"
+              fetchpriority="high"
+            >
+          {%- else -%}
+            <div class="pb-placeholder">{{ 'product-apparel-1' | placeholder_svg_tag }}</div>
+          {%- endif -%}
+        </div>
+
+        {%- if product.media.size > 1 -%}
+          <div class="pb-product__thumbs" role="list">
+            {%- for media in product.media -%}
+              <button
+                type="button"
+                class="pb-product__thumb"
+                data-gallery-thumb
+                data-full="{{ media | image_url: width: 1200 }}"
+                data-alt="{{ media.alt | default: product.title | escape }}"
+                aria-current="{% if media.id == featured_media.id %}true{% else %}false{% endif %}"
+                aria-label="{{ 'products.gallery.view_image' | t: index: forloop.index }}"
+              >
+                <img src="{{ media | image_url: width: 200 }}" alt="" width="200" height="200" loading="lazy">
+              </button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%} ---------- Product info ---------- {%- endcomment -%}
+      <div class="pb-product__info">
+        {%- if s.show_vendor and product.vendor != blank -%}
+          <span class="pb-product__vendor">{{ product.vendor }}</span>
+        {%- elsif s.eyebrow != blank -%}
+          <span class="pb-product__vendor">{{ s.eyebrow }}</span>
+        {%- endif -%}
+
+        <h1 class="pb-product__title">{{ product.title }}</h1>
+
+        <div class="pb-product__price" data-price-target>
+          {%- render 'price-beloved', product: product, variant: current_variant, show_sold_out: true -%}
+        </div>
+
+        {{ product.description | strip_html | truncatewords: 32 }}
+
+        {%- comment -%} ---------- Product form ---------- {%- endcomment -%}
+        {%- form 'product', product, id: 'ProductForm', class: 'pb-product__form', novalidate: 'novalidate' -%}
+          <input type="hidden" name="id" value="{{ current_variant.id }}" data-variant-id>
+
+          {%- unless product.has_only_default_variant -%}
+            <div class="pb-variant-picker" data-variant-picker>
+              {%- for option in product.options_with_values -%}
+                <fieldset class="pb-variant-option">
+                  <legend class="pb-variant-option__label pb-label">{{ option.name }}</legend>
+                  <div class="pb-swatches">
+                    {%- for value in option.values -%}
+                      {%- assign option_id = 'opt-' | append: section.id | append: '-' | append: forloop.parentloop.index | append: '-' | append: forloop.index -%}
+                      <label class="pb-swatch">
+                        <input
+                          type="radio"
+                          name="option-{{ forloop.parentloop.index }}"
+                          id="{{ option_id }}"
+                          value="{{ value | escape }}"
+                          data-option-index="{{ forloop.parentloop.index0 }}"
+                          {% if option.selected_value == value %}checked{% endif %}
+                        >
+                        <span>{{ value }}</span>
+                      </label>
+                    {%- endfor -%}
+                  </div>
+                </fieldset>
+              {%- endfor -%}
+            </div>
+          {%- endunless -%}
+
+          {%- comment -%} Quantity {%- endcomment -%}
+          <div style="margin-top: var(--pb-space-m);">
+            <span class="pb-label" style="display:block; margin-bottom: var(--pb-space-2xs);">{{ 'products.form.quantity' | t }}</span>
+            <div class="pb-qty" data-qty>
+              <button type="button" data-qty-btn="down" aria-label="{{ 'products.form.decrease' | t }}">&minus;</button>
+              <input type="number" name="quantity" value="1" min="1" aria-label="{{ 'products.form.quantity' | t }}">
+              <button type="button" data-qty-btn="up" aria-label="{{ 'products.form.increase' | t }}">+</button>
+            </div>
+          </div>
+
+          <div class="pb-product__actions">
+            <button
+              type="submit"
+              name="add"
+              class="pb-btn pb-btn--primary pb-btn--large pb-btn--full"
+              data-add-to-cart
+              {% unless current_variant.available %}disabled{% endunless %}
+            >
+              <span data-add-label>
+                {%- if current_variant.available -%}{{ 'products.form.add_to_cart' | t }}{%- else -%}{{ 'products.form.sold_out' | t }}{%- endif -%}
+              </span>
+            </button>
+
+            {%- if s.show_buy_now -%}
+              {{ form | payment_button }}
+            {%- endif -%}
+          </div>
+        {%- endform -%}
+
+        {%- comment -%} ---------- Trust details ---------- {%- endcomment -%}
+        {%- if s.show_trust -%}
+          <div class="pb-trust">
+            <div class="pb-trust__item">
+              <span class="pb-trust__icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span><span class="pb-trust__title">{{ s.trust_1_title }}</span><br><span class="pb-trust__text">{{ s.trust_1_text }}</span></span>
+            </div>
+            <div class="pb-trust__item">
+              <span class="pb-trust__icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none"><path d="M3 8h13l3 4v4h-2M3 8v8h1m12 0H8" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="6" cy="17" r="2" stroke="currentColor" stroke-width="2"/><circle cx="17" cy="17" r="2" stroke="currentColor" stroke-width="2"/></svg></span>
+              <span><span class="pb-trust__title">{{ s.trust_2_title }}</span><br><span class="pb-trust__text">{{ s.trust_2_text }}</span></span>
+            </div>
+            <div class="pb-trust__item">
+              <span class="pb-trust__icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none"><path d="M4 12a8 8 0 0 1 8-8m8 8a8 8 0 0 1-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 8v4l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span><span class="pb-trust__title">{{ s.trust_3_title }}</span><br><span class="pb-trust__text">{{ s.trust_3_text }}</span></span>
+            </div>
+          </div>
+        {%- endif -%}
+
+        {%- comment -%} ---------- Full description ---------- {%- endcomment -%}
+        {%- if product.description != blank -%}
+          <div class="pb-product__desc pb-rte">{{ product.description }}</div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{%- comment -%} Variant data for client-side selection {%- endcomment -%}
+<script type="application/json" data-variant-json-{{ section.id }}>
+  {{ product.variants | json }}
+</script>
+
+<script>
+  (function () {
+    var root = document.getElementById('shopify-section-{{ section.id }}');
+    if (!root) return;
+    var picker = root.querySelector('[data-variant-picker]');
+    var idField = root.querySelector('[data-variant-id]');
+    var priceTarget = root.querySelector('[data-price-target]');
+    var addBtn = root.querySelector('[data-add-to-cart]');
+    var addLabel = root.querySelector('[data-add-label]');
+    var mainImg = root.querySelector('[data-gallery-main]');
+    var dataEl = root.querySelector('[data-variant-json-{{ section.id }}]');
+    if (!dataEl) return;
+
+    var variants = JSON.parse(dataEl.textContent);
+    var moneyFormat = "{{ shop.money_format | replace: '"', '\\"' }}";
+
+    function formatMoney(cents) {
+      var value = (cents / 100).toFixed(2);
+      return moneyFormat.replace(/\{\{\s*amount\s*\}\}/, value);
+    }
+
+    function selectedOptions() {
+      if (!picker) return [];
+      var opts = [];
+      picker.querySelectorAll('input[type="radio"]:checked').forEach(function (input) {
+        opts[parseInt(input.getAttribute('data-option-index'), 10)] = input.value;
+      });
+      return opts;
+    }
+
+    function findVariant(opts) {
+      return variants.find(function (v) {
+        return opts.every(function (val, i) { return v.options[i] === val; });
+      });
+    }
+
+    function update() {
+      var opts = selectedOptions();
+      var variant = findVariant(opts);
+
+      if (!variant) {
+        if (addBtn) { addBtn.setAttribute('disabled', 'disabled'); }
+        if (addLabel) { addLabel.textContent = "{{ 'products.form.unavailable' | t }}"; }
+        return;
+      }
+
+      if (idField) idField.value = variant.id;
+
+      // URL sync (no reload)
+      if (history.replaceState) {
+        var url = new URL(window.location.href);
+        url.searchParams.set('variant', variant.id);
+        history.replaceState({}, '', url.toString());
+      }
+
+      // Price
+      if (priceTarget) {
+        var html = '<div class="pb-price' + (variant.compare_at_price > variant.price ? ' pb-price--on-sale' : '') + '">';
+        html += '<span class="pb-price__regular">' + formatMoney(variant.price) + '</span>';
+        if (variant.compare_at_price > variant.price) {
+          html += '<s class="pb-price__compare">' + formatMoney(variant.compare_at_price) + '</s>';
+        }
+        html += '</div>';
+        priceTarget.innerHTML = html;
+      }
+
+      // Availability
+      if (addBtn && addLabel) {
+        if (variant.available) {
+          addBtn.removeAttribute('disabled');
+          addLabel.textContent = "{{ 'products.form.add_to_cart' | t }}";
+        } else {
+          addBtn.setAttribute('disabled', 'disabled');
+          addLabel.textContent = "{{ 'products.form.sold_out' | t }}";
+        }
+      }
+
+      // Image
+      if (mainImg && variant.featured_image) {
+        mainImg.src = variant.featured_image.src.replace(/(\.[a-z]+)(\?.*)?$/i, '_1200x$1');
+        mainImg.alt = variant.featured_image.alt || mainImg.alt;
+      }
+    }
+
+    if (picker) {
+      picker.addEventListener('change', update);
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Product",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow (fallback when no vendor)", "default": "Peace Beloved" },
+    { "type": "checkbox", "id": "show_vendor", "label": "Show product vendor", "default": false },
+    { "type": "checkbox", "id": "show_buy_now", "label": "Show dynamic checkout / Buy now button", "default": true },
+    { "type": "header", "content": "Trust details" },
+    { "type": "checkbox", "id": "show_trust", "label": "Show trust details", "default": true },
+    { "type": "text", "id": "trust_1_title", "label": "Trust 1 title", "default": "Secure Checkout" },
+    { "type": "text", "id": "trust_1_text", "label": "Trust 1 text", "default": "Encrypted payments via Shopify." },
+    { "type": "text", "id": "trust_2_title", "label": "Trust 2 title", "default": "Fast Shipping" },
+    { "type": "text", "id": "trust_2_text", "label": "Trust 2 text", "default": "Tracked delivery on every order." },
+    { "type": "text", "id": "trust_3_title", "label": "Trust 3 title", "default": "Easy Returns" },
+    { "type": "text", "id": "trust_3_text", "label": "Trust 3 text", "default": "30-day exchanges & returns." }
+  ]
+}
+{% endschema %}

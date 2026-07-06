@@ -1,0 +1,47 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product-beloved",
+      "settings": {
+        "eyebrow": "Peace Beloved",
+        "show_vendor": false,
+        "show_buy_now": true,
+        "show_trust": true,
+        "trust_1_title": "Secure Checkout",
+        "trust_1_text": "Encrypted payments via Shopify.",
+        "trust_2_title": "Fast Shipping",
+        "trust_2_text": "Tracked delivery on every order.",
+        "trust_3_title": "Easy Returns",
+        "trust_3_text": "30-day exchanges & returns."
+      }
+    },
+    "story": {
+      "type": "product-story",
+      "settings": {
+        "eyebrow": "The Meaning",
+        "heading": "The Story Behind the Piece",
+        "accent_text": "Every thread carries the message.",
+        "body": "<p>This piece was designed for the ones who kept going. Built from premium materials and finished with intention, it carries the reminder that what was once overlooked can become beloved. Wear it as a statement — of peace, of resilience, of becoming.</p>",
+        "image_position": "left",
+        "use_metafields": true,
+        "background_scheme": "cream"
+      },
+      "blocks": {
+        "b1": { "type": "bullet", "settings": { "title": "Material", "text": "Premium heavyweight cotton, built to last." } },
+        "b2": { "type": "bullet", "settings": { "title": "Fit", "text": "Relaxed streetwear silhouette." } },
+        "b3": { "type": "bullet", "settings": { "title": "Meaning", "text": "A wearable reminder: from overlooked to iconic." } }
+      },
+      "block_order": ["b1", "b2", "b3"]
+    },
+    "related": {
+      "type": "related-beloved",
+      "settings": {
+        "eyebrow": "Complete the Fit",
+        "heading": "You May Also Love",
+        "product_limit": 4,
+        "background_scheme": "white"
+      }
+    }
+  },
+  "order": ["main", "story", "related"]
+}

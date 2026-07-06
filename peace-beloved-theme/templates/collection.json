@@ -1,0 +1,35 @@
+{
+  "sections": {
+    "banner": {
+      "type": "collection-banner-beloved",
+      "settings": {
+        "eyebrow": "The Collection",
+        "overlay_opacity": 45,
+        "show_description": true,
+        "text_align": "left",
+        "color_scheme": "black"
+      }
+    },
+    "grid": {
+      "type": "main-collection-beloved",
+      "settings": {
+        "per_page": 16,
+        "show_sorting": true,
+        "show_filters": true,
+        "background_scheme": "white"
+      }
+    },
+    "signup": {
+      "type": "email-signup-beloved",
+      "settings": {
+        "eyebrow": "Newsletter",
+        "heading": "Join the Beloved List",
+        "text": "Get first access to new drops, private releases, restocks, and exclusive brand updates.",
+        "button_label": "Get First Access",
+        "button_style": "primary",
+        "background_scheme": "dark-blue"
+      }
+    }
+  },
+  "order": ["banner", "grid", "signup"]
+}
