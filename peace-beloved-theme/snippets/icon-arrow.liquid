@@ -1,0 +1,18 @@
+{%- comment -%}
+  Renders a simple arrow icon.
+  Accepts:
+    direction: 'right' (default) | 'up-right'
+    class: extra classes
+{%- endcomment -%}
+{%- liquid
+  assign dir = direction | default: 'right'
+-%}
+{%- if dir == 'up-right' -%}
+  <svg class="pb-icon pb-icon--arrow {{ class }}" viewBox="0 0 24 24" fill="none" width="16" height="16" aria-hidden="true" focusable="false">
+    <path d="M7 17 17 7M17 7H8M17 7v9" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+  </svg>
+{%- else -%}
+  <svg class="pb-icon pb-icon--arrow {{ class }}" viewBox="0 0 24 24" fill="none" width="16" height="16" aria-hidden="true" focusable="false">
+    <path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
+  </svg>
+{%- endif -%}

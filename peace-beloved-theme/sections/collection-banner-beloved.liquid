@@ -1,0 +1,80 @@
+{%- comment -%} Peace Beloved — Collection banner {%- endcomment -%}
+{%- liquid
+  assign s = section.settings
+  assign banner_image = s.image | default: collection.image
+  assign has_media = false
+  if banner_image != blank
+    assign has_media = true
+  endif
+
+  assign scheme = s.color_scheme
+  if has_media
+    assign scheme = 'black'
+  endif
+
+  assign banner_class = 'pb-collection-banner pb-scheme-' | append: scheme
+  if s.text_align == 'center'
+    assign banner_class = banner_class | append: ' pb-collection-banner--center'
+  endif
+-%}
+
+<section class="{{ banner_class }}" style="--pb-cb-overlay: {{ s.overlay_opacity | divided_by: 100.0 }};">
+  {%- if has_media -%}
+    <div class="pb-collection-banner__media">
+      <img
+        src="{{ banner_image | image_url: width: 1800 }}"
+        srcset="{{ banner_image | image_url: width: 1000 }} 1000w, {{ banner_image | image_url: width: 1800 }} 1800w"
+        sizes="100vw"
+        alt="{{ banner_image.alt | default: collection.title | escape }}"
+        width="{{ banner_image.width }}" height="{{ banner_image.height }}"
+        fetchpriority="high"
+      >
+    </div>
+    <div class="pb-collection-banner__overlay" aria-hidden="true"></div>
+  {%- endif -%}
+
+  <div class="pb-collection-banner__content">
+    <div class="pb-container pb-reveal">
+      {%- if s.eyebrow != blank -%}<span class="pb-eyebrow">{{ s.eyebrow }}</span>{%- endif -%}
+      <h1 class="pb-collection-banner__title">{{ collection.title | default: 'Shop' }}</h1>
+      {%- if s.show_description and collection.description != blank -%}
+        <div class="pb-collection-banner__desc pb-rte">{{ collection.description }}</div>
+      {%- elsif s.custom_text != blank -%}
+        <p class="pb-collection-banner__desc">{{ s.custom_text }}</p>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection banner",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The Collection" },
+    { "type": "image_picker", "id": "image", "label": "Custom image", "info": "Falls back to the collection image." },
+    {
+      "type": "range", "id": "overlay_opacity", "label": "Overlay opacity",
+      "min": 0, "max": 90, "step": 5, "unit": "%", "default": 45
+    },
+    { "type": "checkbox", "id": "show_description", "label": "Show collection description", "default": true },
+    { "type": "textarea", "id": "custom_text", "label": "Custom text", "info": "Shown when there is no collection description." },
+    {
+      "type": "select", "id": "text_align", "label": "Text alignment",
+      "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" } ],
+      "default": "left"
+    },
+    {
+      "type": "select", "id": "color_scheme", "label": "Color scheme (when no image)",
+      "options": [
+        { "value": "black", "label": "Black" },
+        { "value": "blue", "label": "Royal blue" },
+        { "value": "dark-blue", "label": "Dark blue" },
+        { "value": "cream", "label": "Cream" },
+        { "value": "orange", "label": "Orange" }
+      ],
+      "default": "black"
+    }
+  ]
+}
+{% endschema %}

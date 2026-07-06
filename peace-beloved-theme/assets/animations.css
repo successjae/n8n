@@ -1,0 +1,52 @@
+/* ==========================================================================
+   Peace Beloved Clothing — animations.css
+   Subtle, performance-friendly motion. Respects reduced-motion + theme toggle.
+   ========================================================================== */
+
+/* Scroll reveal — elements start hidden, .is-visible added by IntersectionObserver.
+   If JS is disabled or animations are turned off, base.css / theme.liquid keep
+   content visible. */
+.js .pb-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s var(--pb-ease), transform 0.7s var(--pb-ease);
+  transition-delay: var(--pb-reveal-delay, 0ms);
+}
+.js .pb-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Simple fade for hero intro */
+@keyframes pb-fade-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.pb-hero--animate .pb-hero__inner > * {
+  animation: pb-fade-up 0.9s var(--pb-ease) both;
+  animation-play-state: var(--pb-anim-state);
+}
+.pb-hero--animate .pb-hero__inner > *:nth-child(1) { animation-delay: 0.05s; }
+.pb-hero--animate .pb-hero__inner > *:nth-child(2) { animation-delay: 0.15s; }
+.pb-hero--animate .pb-hero__inner > *:nth-child(3) { animation-delay: 0.25s; }
+.pb-hero--animate .pb-hero__inner > *:nth-child(4) { animation-delay: 0.35s; }
+.pb-hero--animate .pb-hero__inner > *:nth-child(5) { animation-delay: 0.45s; }
+
+/* Marquee scroll */
+@keyframes pb-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Header drop-in when it becomes sticky over hero */
+@keyframes pb-header-drop {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .pb-reveal { opacity: 1 !important; transform: none !important; transition: none; }
+  .pb-hero--animate .pb-hero__inner > * { animation: none; }
+  .pb-marquee__track { animation: none; }
+}

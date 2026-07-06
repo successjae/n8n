@@ -1,0 +1,122 @@
+{%- comment -%} Peace Beloved — Collection product grid {%- endcomment -%}
+{%- liquid
+  assign s = section.settings
+  assign per_page = s.per_page
+-%}
+
+<section class="pb-section pb-scheme-{{ s.background_scheme }}">
+  <div class="pb-container">
+
+    {%- comment -%} Toolbar: count + sort {%- endcomment -%}
+    <div class="pb-collection-toolbar">
+      <span class="pb-collection-count">
+        {{ 'collections.count' | t: count: collection.products_count }}
+      </span>
+
+      {%- if s.show_sorting -%}
+        {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+        <form class="pb-sort" method="get">
+          <label class="pb-visually-hidden" for="SortBy">{{ 'collections.sort_label' | t }}</label>
+          <select name="sort_by" id="SortBy" onchange="this.form.submit()">
+            {%- for option in collection.sort_options -%}
+              <option value="{{ option.value }}" {% if option.value == sort_by %}selected{% endif %}>{{ option.name }}</option>
+            {%- endfor -%}
+          </select>
+          {%- comment -%} Preserve active filters when sorting {%- endcomment -%}
+          {%- for filter in collection.filters -%}
+            {%- for value in filter.active_values -%}
+              <input type="hidden" name="{{ value.param_name }}" value="{{ value.value | escape }}">
+            {%- endfor -%}
+          {%- endfor -%}
+        </form>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Filters (native Shopify storefront filtering) {%- endcomment -%}
+    {%- if s.show_filters and collection.filters.size > 0 -%}
+      <form method="get" class="pb-flex pb-gap-m" style="flex-wrap:wrap; margin-bottom: var(--pb-space-l);">
+        {%- if collection.current_type != blank %}<input type="hidden" name="q" value="{{ collection.current_type }}">{% endif -%}
+        {%- if collection.sort_by != blank %}<input type="hidden" name="sort_by" value="{{ collection.sort_by }}">{% endif -%}
+        {%- for filter in collection.filters -%}
+          {%- if filter.type == 'list' or filter.type == 'boolean' -%}
+            <details class="pb-filter">
+              <summary class="pb-label" style="cursor:pointer; padding:10px 0;">{{ filter.label }}</summary>
+              <div style="display:flex; flex-direction:column; gap:6px; padding:8px 0;">
+                {%- for value in filter.values -%}
+                  <label style="display:flex; gap:8px; align-items:center; font-size:var(--pb-fs-small);">
+                    <input type="checkbox" name="{{ value.param_name }}" value="{{ value.value | escape }}" {% if value.active %}checked{% endif %} onchange="this.form.submit()">
+                    {{ value.label }} ({{ value.count }})
+                  </label>
+                {%- endfor -%}
+              </div>
+            </details>
+          {%- endif -%}
+        {%- endfor -%}
+        <noscript><button type="submit" class="pb-btn pb-btn--dark">{{ 'collections.filter' | t }}</button></noscript>
+      </form>
+    {%- endif -%}
+
+    {%- comment -%} Product grid {%- endcomment -%}
+    {%- paginate collection.products by per_page -%}
+      {%- if collection.products.size > 0 -%}
+        <div class="pb-product-grid">
+          {%- for product in collection.products -%}
+            {%- render 'product-card-beloved', product: product -%}
+          {%- endfor -%}
+        </div>
+
+        {%- if paginate.pages > 1 -%}
+          <nav class="pb-pagination" role="navigation" aria-label="{{ 'general.pagination.label' | t }}">
+            {%- if paginate.previous -%}
+              <a href="{{ paginate.previous.url }}" aria-label="{{ 'general.pagination.previous' | t }}">&larr;</a>
+            {%- endif -%}
+            {%- for part in paginate.parts -%}
+              {%- if part.is_link -%}
+                <a href="{{ part.url }}">{{ part.title }}</a>
+              {%- elsif part.title == paginate.current_page -%}
+                <span aria-current="page">{{ part.title }}</span>
+              {%- else -%}
+                <span>{{ part.title }}</span>
+              {%- endif -%}
+            {%- endfor -%}
+            {%- if paginate.next -%}
+              <a href="{{ paginate.next.url }}" aria-label="{{ 'general.pagination.next' | t }}">&rarr;</a>
+            {%- endif -%}
+          </nav>
+        {%- endif -%}
+      {%- else -%}
+        <div class="pb-empty-state">
+          <span class="pb-eyebrow">{{ 'collections.empty_eyebrow' | t }}</span>
+          <h2>{{ 'collections.empty_title' | t }}</h2>
+          <p class="pb-section__subhead" style="margin-inline:auto;">{{ 'collections.empty_text' | t }}</p>
+          <div style="margin-top: var(--pb-space-l);">
+            {%- render 'button-beloved', label: 'Browse all products', url: routes.all_products_collection_url, style: 'primary', arrow: true -%}
+          </div>
+        </div>
+      {%- endif -%}
+    {%- endpaginate -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection grid",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "range", "id": "per_page", "label": "Products per page",
+      "min": 8, "max": 36, "step": 4, "default": 16
+    },
+    { "type": "checkbox", "id": "show_sorting", "label": "Enable sorting", "default": true },
+    { "type": "checkbox", "id": "show_filters", "label": "Enable filtering", "default": true },
+    {
+      "type": "select", "id": "background_scheme", "label": "Background",
+      "options": [
+        { "value": "white", "label": "White" },
+        { "value": "cream", "label": "Cream" }
+      ],
+      "default": "white"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,178 @@
+{%- comment -%} Peace Beloved — Custom header {%- endcomment -%}
+{%- liquid
+  assign is_transparent = false
+  if section.settings.enable_transparent and template.name == 'index'
+    assign is_transparent = true
+  endif
+
+  assign header_classes = 'pb-header pb-scheme-' | append: section.settings.color_scheme
+  if section.settings.sticky
+    assign header_classes = header_classes | append: ' pb-header--sticky'
+  endif
+  if is_transparent
+    assign header_classes = header_classes | append: ' pb-header--transparent'
+  endif
+-%}
+
+<header class="{{ header_classes }}" data-header role="banner">
+  <div class="pb-container">
+    <div class="pb-header__inner">
+
+      {%- comment -%} Left: mobile toggle {%- endcomment -%}
+      <div class="pb-header__lead">
+        <button
+          type="button"
+          class="pb-hamburger"
+          data-mobile-nav-toggle
+          aria-expanded="false"
+          aria-controls="pb-mobile-nav"
+          aria-label="{{ 'accessibility.menu' | t }}"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      {%- comment -%} Center: logo {%- endcomment -%}
+      <a href="{{ routes.root_url }}" class="pb-header__logo" aria-label="{{ shop.name }} — {{ 'accessibility.home' | t }}">
+        {%- if section.settings.logo != blank -%}
+          {%- assign logo_alt = section.settings.logo.alt | default: shop.name -%}
+          <img
+            src="{{ section.settings.logo | image_url: width: 320 }}"
+            alt="{{ logo_alt | escape }}"
+            width="{{ section.settings.logo.width }}"
+            height="{{ section.settings.logo.height }}"
+            style="max-width: {{ section.settings.logo_width }}px;"
+          >
+        {%- else -%}
+          <span>Peace<span class="pb-header__logo-mark"> Beloved</span></span>
+        {%- endif -%}
+      </a>
+
+      {%- comment -%} Center-right: desktop nav {%- endcomment -%}
+      <nav class="pb-header__nav" aria-label="{{ 'accessibility.primary_nav' | t }}">
+        <ul role="list">
+          {%- for link in section.settings.menu.links -%}
+            <li>
+              <a href="{{ link.url }}"{% if link.active %} aria-current="page"{% endif %}>{{ link.title }}</a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </nav>
+
+      {%- comment -%} Right: actions {%- endcomment -%}
+      <div class="pb-header__actions">
+        {%- if section.settings.show_search -%}
+          <a href="{{ routes.search_url }}" class="pb-header__action" aria-label="{{ 'accessibility.search' | t }}">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m20 20-3-3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </a>
+        {%- endif -%}
+
+        {%- if section.settings.show_instagram and settings.social_instagram != blank -%}
+          <a href="{{ settings.social_instagram }}" class="pb-header__action" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+        {%- endif -%}
+
+        <a href="{{ routes.cart_url }}" class="pb-header__action" aria-label="{{ 'accessibility.cart' | t }}: {{ cart.item_count }}">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 8a3 3 0 0 1 6 0" stroke="currentColor" stroke-width="2"/></svg>
+          <span class="pb-cart-count" data-cart-count{% if cart.item_count == 0 %} hidden{% endif %}>{{ cart.item_count }}</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+{%- comment -%} Mobile drawer {%- endcomment -%}
+<div class="pb-mobile-nav" id="pb-mobile-nav" data-mobile-nav data-open="false" role="dialog" aria-modal="true" aria-label="{{ 'accessibility.menu' | t }}">
+  <div class="pb-mobile-nav__overlay" data-mobile-nav-close tabindex="-1"></div>
+  <div class="pb-mobile-nav__panel">
+    <div class="pb-mobile-nav__head">
+      <span class="pb-header__logo"><span>Peace<span class="pb-header__logo-mark"> Beloved</span></span></span>
+      <button type="button" class="pb-mobile-nav__close" data-mobile-nav-close aria-label="{{ 'accessibility.close' | t }}">&times;</button>
+    </div>
+
+    <nav class="pb-mobile-nav__links" aria-label="{{ 'accessibility.mobile_nav' | t }}">
+      {%- for link in section.settings.menu.links -%}
+        <a href="{{ link.url }}"{% if link.active %} aria-current="page"{% endif %}>{{ link.title }}</a>
+      {%- endfor -%}
+      <a href="{{ routes.cart_url }}">Cart ({{ cart.item_count }})</a>
+    </nav>
+
+    <div class="pb-mobile-nav__social">
+      {%- if settings.social_instagram != blank -%}<a href="{{ settings.social_instagram }}" target="_blank" rel="noopener">Instagram</a>{%- endif -%}
+      {%- if settings.social_tiktok != blank -%}<a href="{{ settings.social_tiktok }}" target="_blank" rel="noopener">TikTok</a>{%- endif -%}
+      {%- if settings.social_twitter != blank -%}<a href="{{ settings.social_twitter }}" target="_blank" rel="noopener">X</a>{%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image",
+      "info": "Falls back to text logo “Peace Beloved”"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "label": "Logo width",
+      "min": 80,
+      "max": 260,
+      "step": 10,
+      "unit": "px",
+      "default": 140
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Navigation menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "options": [
+        { "value": "black", "label": "Black" },
+        { "value": "cream", "label": "Cream" },
+        { "value": "blue", "label": "Royal blue" },
+        { "value": "dark-blue", "label": "Dark blue" }
+      ],
+      "default": "black"
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky",
+      "label": "Sticky header",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_transparent",
+      "label": "Transparent over hero (homepage)",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Actions"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search",
+      "label": "Show search icon",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_instagram",
+      "label": "Show Instagram icon",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

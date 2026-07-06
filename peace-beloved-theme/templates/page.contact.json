@@ -1,0 +1,29 @@
+{
+  "sections": {
+    "contact": {
+      "type": "contact-beloved",
+      "settings": {
+        "eyebrow": "Get in Touch",
+        "heading": "Contact Peace Beloved",
+        "statement": "Questions about a drop, an order, or the movement? We're here.",
+        "support_heading": "Customer Service",
+        "support_text": "<p>We reply to every message within 1–2 business days. For order help, include your order number.</p>",
+        "email": "hello@peacebelovedclothing.com",
+        "hours": "Mon–Fri, 9am–5pm EST",
+        "background_scheme": "cream"
+      }
+    },
+    "marquee": {
+      "type": "marquee-beloved",
+      "settings": {
+        "phrases": "Peace Beloved\nWe're here for you\nTake the unloved and make it beloved",
+        "speed": 34,
+        "direction": "left",
+        "pause_on_hover": true,
+        "background": "#101010",
+        "text_color": "#F58426"
+      }
+    }
+  },
+  "order": ["contact", "marquee"]
+}

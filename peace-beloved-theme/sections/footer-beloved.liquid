@@ -1,0 +1,130 @@
+{%- comment -%} Peace Beloved — Custom footer {%- endcomment -%}
+<footer class="pb-footer" role="contentinfo">
+  <div class="pb-container">
+    <div class="pb-footer__grid">
+
+      {%- comment -%} Brand column {%- endcomment -%}
+      <div class="pb-footer__brand">
+        {%- if settings.logo != blank -%}
+          <img src="{{ settings.logo | image_url: width: 240 }}" alt="{{ shop.name | escape }}" width="120" height="auto" loading="lazy" style="max-width:140px;">
+        {%- else -%}
+          <div class="pb-footer__brand-name">Peace Beloved</div>
+        {%- endif -%}
+        <p class="pb-footer__statement">{{ section.settings.statement | default: settings.brand_statement }}</p>
+        <div class="pb-mobile-nav__social" style="margin-top: var(--pb-space-l);">
+          {%- if settings.social_instagram != blank -%}<a href="{{ settings.social_instagram }}" target="_blank" rel="noopener">Instagram</a>{%- endif -%}
+          {%- if settings.social_tiktok != blank -%}<a href="{{ settings.social_tiktok }}" target="_blank" rel="noopener">TikTok</a>{%- endif -%}
+          {%- if settings.social_twitter != blank -%}<a href="{{ settings.social_twitter }}" target="_blank" rel="noopener">X</a>{%- endif -%}
+          {%- if settings.social_youtube != blank -%}<a href="{{ settings.social_youtube }}" target="_blank" rel="noopener">YouTube</a>{%- endif -%}
+        </div>
+      </div>
+
+      {%- comment -%} Menu column 1 {%- endcomment -%}
+      {%- if section.settings.menu_1 != blank -%}
+        <div class="pb-footer__col">
+          <h2 class="pb-footer__col-title">{{ section.settings.menu_1_title }}</h2>
+          <ul class="pb-footer__links" role="list">
+            {%- for link in section.settings.menu_1.links -%}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
+
+      {%- comment -%} Menu column 2 {%- endcomment -%}
+      {%- if section.settings.menu_2 != blank -%}
+        <div class="pb-footer__col">
+          <h2 class="pb-footer__col-title">{{ section.settings.menu_2_title }}</h2>
+          <ul class="pb-footer__links" role="list">
+            {%- for link in section.settings.menu_2.links -%}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
+
+      {%- comment -%} Newsletter column {%- endcomment -%}
+      <div class="pb-footer__newsletter">
+        <h2 class="pb-footer__col-title">{{ section.settings.newsletter_heading | default: settings.newsletter_heading }}</h2>
+        <p style="opacity:0.85; margin-bottom: var(--pb-space-s);">{{ section.settings.newsletter_text | default: settings.newsletter_text }}</p>
+        {%- form 'customer', class: 'pb-inline-form' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter, footer">
+          <input type="hidden" name="contact[email_marketing_consent]" value="subscribed">
+          {%- if form.posted_successfully? -%}
+            <p class="pb-form-message pb-form-message--success" role="status">{{ 'newsletter.success' | t }}</p>
+          {%- elsif form.errors -%}
+            <p class="pb-form-message pb-form-message--error" role="alert">{{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}</p>
+          {%- endif -%}
+          <label class="pb-visually-hidden" for="FooterEmail">{{ 'newsletter.email_label' | t }}</label>
+          <input
+            type="email"
+            id="FooterEmail"
+            name="contact[email]"
+            placeholder="{{ 'newsletter.email_placeholder' | t }}"
+            autocomplete="email"
+            required
+          >
+          <button type="submit" class="pb-btn pb-btn--primary pb-btn--full">{{ 'newsletter.button' | t }}</button>
+        {%- endform -%}
+      </div>
+
+    </div>
+
+    <div class="pb-footer__bottom">
+      <div>
+        <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}.</span>
+        <span> {{ 'general.footer.rights' | t }}</span>
+        {%- if section.settings.show_policies -%}
+          {%- for policy in shop.policies -%}
+            {%- if policy != blank -%} &middot; <a href="{{ policy.url }}">{{ policy.title }}</a>{%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+      {%- if section.settings.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
+        <div class="pb-payment-icons" role="list" aria-label="{{ 'general.footer.payment' | t }}">
+          {%- for type in shop.enabled_payment_types -%}
+            {{ type | payment_type_svg_tag: class: 'pb-payment-icon' }}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "statement",
+      "label": "Brand statement",
+      "default": "Take the unloved and make it beloved."
+    },
+    {
+      "type": "header",
+      "content": "Menu column 1"
+    },
+    { "type": "text", "id": "menu_1_title", "label": "Title", "default": "Shop" },
+    { "type": "link_list", "id": "menu_1", "label": "Menu", "default": "footer" },
+    {
+      "type": "header",
+      "content": "Menu column 2"
+    },
+    { "type": "text", "id": "menu_2_title", "label": "Title", "default": "The Brand" },
+    { "type": "link_list", "id": "menu_2", "label": "Menu" },
+    {
+      "type": "header",
+      "content": "Newsletter"
+    },
+    { "type": "text", "id": "newsletter_heading", "label": "Heading", "default": "Join the Beloved List" },
+    { "type": "textarea", "id": "newsletter_text", "label": "Text", "default": "Get first access to new drops, restocks, and exclusive brand updates." },
+    {
+      "type": "header",
+      "content": "Bottom bar"
+    },
+    { "type": "checkbox", "id": "show_policies", "label": "Show store policy links", "default": true },
+    { "type": "checkbox", "id": "show_payment_icons", "label": "Show payment icons", "default": true }
+  ]
+}
+{% endschema %}

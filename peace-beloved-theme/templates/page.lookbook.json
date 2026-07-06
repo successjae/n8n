@@ -1,0 +1,72 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-editorial",
+      "settings": {
+        "eyebrow": "Lookbook",
+        "headline": "Wear the Message",
+        "subheadline": "Styled for the city, the court, and the ones becoming beloved.",
+        "text": "A visual world of peace, power, and premium streetwear.",
+        "button_primary_label": "Shop the Collection",
+        "button_primary_link": "shopify://collections/all",
+        "button_secondary_label": "Our Story",
+        "button_secondary_link": "shopify://pages/about",
+        "height": "medium",
+        "text_align": "center",
+        "color_scheme": "black",
+        "overlay_opacity": 40,
+        "animate": true
+      }
+    },
+    "lookbook": {
+      "type": "lookbook-grid",
+      "settings": {
+        "eyebrow": "Editorial",
+        "heading": "The Fits",
+        "subheading": "Complete looks built from court energy and city attitude.",
+        "background_scheme": "cream"
+      },
+      "blocks": {
+        "l1": { "type": "image", "settings": { "size": "wide", "eyebrow": "Court Ready", "title": "The Warm-Up Set" } },
+        "l2": { "type": "image", "settings": { "size": "tall", "eyebrow": "City Layer", "title": "Beloved Hoodie" } },
+        "l3": { "type": "image", "settings": { "size": "normal", "eyebrow": "Everyday", "title": "Peace Tee" } },
+        "l4": { "type": "image", "settings": { "size": "normal", "eyebrow": "Statement", "title": "The Cap" } },
+        "l5": { "type": "image", "settings": { "size": "tall", "eyebrow": "Off Duty", "title": "The Full Fit" } },
+        "l6": { "type": "image", "settings": { "size": "normal", "eyebrow": "Layer Up", "title": "The Crewneck" } }
+      },
+      "block_order": ["l1", "l2", "l3", "l4", "l5", "l6"]
+    },
+    "featured": {
+      "type": "featured-drop",
+      "settings": {
+        "eyebrow": "Shop the Looks",
+        "heading": "The NYPB Collection",
+        "subheading": "Premium pieces built with court energy, city attitude, and beloved identity.",
+        "product_limit": 4,
+        "layout": "grid",
+        "quick_add": true,
+        "hover_image": true,
+        "button_label": "Shop the Collection",
+        "background_scheme": "white"
+      }
+    },
+    "instagram": {
+      "type": "instagram-gallery",
+      "settings": {
+        "eyebrow": "Community",
+        "heading": "Seen in the City",
+        "subheading": "Tag @PeaceBelovedClothing to be featured.",
+        "cta_label": "Follow @PeaceBelovedClothing",
+        "background_scheme": "black"
+      },
+      "blocks": {
+        "i1": { "type": "image" },
+        "i2": { "type": "image" },
+        "i3": { "type": "image" },
+        "i4": { "type": "image" }
+      },
+      "block_order": ["i1", "i2", "i3", "i4"]
+    }
+  },
+  "order": ["hero", "lookbook", "featured", "instagram"]
+}

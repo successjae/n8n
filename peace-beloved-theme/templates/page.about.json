@@ -1,0 +1,70 @@
+{
+  "sections": {
+    "manifesto": {
+      "type": "brand-manifesto",
+      "settings": {
+        "image_position": "right",
+        "eyebrow": "Our Story",
+        "heading": "Take the Unloved and Make It Beloved",
+        "body": "<p>Peace Beloved was built on the belief that what was overlooked can still become chosen. The brand is rooted in peace, resilience, and transformation. Every piece is designed to carry meaning, not just style.</p><p>This is streetwear for the ones who kept going — a wearable reminder that value does not come from outside approval.</p>",
+        "quote": "From overlooked to iconic.",
+        "button_label": "Shop the Collection",
+        "button_link": "shopify://collections/all",
+        "button_style": "primary",
+        "background_scheme": "cream",
+        "accent_color": "#F58426"
+      }
+    },
+    "marquee": {
+      "type": "marquee-beloved",
+      "settings": {
+        "phrases": "Peace\nBeloved\nTransformation\nFrom overlooked to iconic",
+        "speed": 32,
+        "direction": "left",
+        "pause_on_hover": true,
+        "background": "#0057B8",
+        "text_color": "#F7F2EA"
+      }
+    },
+    "values": {
+      "type": "values-cards",
+      "settings": {
+        "eyebrow": "What We Stand For",
+        "heading": "Peace. Beloved. Transformation.",
+        "background_scheme": "white"
+      },
+      "blocks": {
+        "v1": { "type": "value", "settings": { "heading": "Peace", "text": "Clothing rooted in calm confidence, self-respect, and purpose.", "card_scheme": "blue" } },
+        "v2": { "type": "value", "settings": { "heading": "Beloved", "text": "A reminder that value does not come from outside approval.", "card_scheme": "orange" } },
+        "v3": { "type": "value", "settings": { "heading": "Transformation", "text": "Taking what was overlooked and making it impossible to ignore.", "card_scheme": "black" } }
+      },
+      "block_order": ["v1", "v2", "v3"]
+    },
+    "mission": {
+      "type": "brand-manifesto",
+      "settings": {
+        "image_position": "left",
+        "eyebrow": "The Movement",
+        "heading": "A Brand That Feels Like a Movement",
+        "body": "<p>Rooted in New York energy — the court, the city, the culture — Peace Beloved blends spiritual confidence with elevated street style. We don't just make apparel. We make statements you can wear.</p>",
+        "quote": "Wear the message.",
+        "button_label": "Explore the Lookbook",
+        "button_link": "shopify://pages/lookbook",
+        "button_style": "dark",
+        "background_scheme": "black",
+        "accent_color": "#F58426"
+      }
+    },
+    "signup": {
+      "type": "email-signup-beloved",
+      "settings": {
+        "heading": "Join the Beloved List",
+        "text": "Be first to every drop, restock, and story.",
+        "button_label": "Get First Access",
+        "button_style": "dark",
+        "background_scheme": "orange"
+      }
+    }
+  },
+  "order": ["manifesto", "marquee", "values", "mission", "signup"]
+}

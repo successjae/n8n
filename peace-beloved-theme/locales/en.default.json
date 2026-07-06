@@ -1,0 +1,88 @@
+{
+  "accessibility": {
+    "skip_to_content": "Skip to content",
+    "refresh_page": "Choosing a selection results in a full page refresh.",
+    "menu": "Menu",
+    "home": "Home",
+    "primary_nav": "Primary navigation",
+    "mobile_nav": "Mobile navigation",
+    "search": "Search",
+    "cart": "Cart",
+    "close": "Close"
+  },
+  "general": {
+    "meta": {
+      "page": "Page {{ page }}"
+    },
+    "footer": {
+      "rights": "All rights reserved.",
+      "payment": "Payment methods"
+    },
+    "pagination": {
+      "label": "Pagination",
+      "previous": "Previous page",
+      "next": "Next page"
+    }
+  },
+  "newsletter": {
+    "success": "Welcome to the Beloved List. You're in.",
+    "email_label": "Email address",
+    "email_placeholder": "Enter your email",
+    "button": "Subscribe"
+  },
+  "onboarding": {
+    "product_title": "Example product"
+  },
+  "sections": {
+    "marquee": {
+      "label": "Announcements"
+    }
+  },
+  "products": {
+    "price": {
+      "sold_out": "Sold out",
+      "from": "From",
+      "sale_price": "Sale price",
+      "regular_price": "Regular price"
+    },
+    "card": {
+      "sold_out": "Sold out",
+      "sale": "Sale",
+      "quick_add": "Quick add",
+      "choose_options": "Choose options"
+    },
+    "gallery": {
+      "view_image": "View image {{ index }}"
+    },
+    "form": {
+      "quantity": "Quantity",
+      "decrease": "Decrease quantity",
+      "increase": "Increase quantity",
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable"
+    }
+  },
+  "collections": {
+    "count": {
+      "one": "{{ count }} product",
+      "other": "{{ count }} products"
+    },
+    "sort_label": "Sort by",
+    "filter": "Filter",
+    "empty_eyebrow": "Nothing here yet",
+    "empty_title": "No products found",
+    "empty_text": "This collection is empty or no products match your filters."
+  },
+  "contact": {
+    "success": "Thanks for reaching out. We'll be in touch soon.",
+    "error": "Please fix the following:",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "message": "Message",
+    "send": "Send Message",
+    "hours": "Hours",
+    "follow": "Follow"
+  }
+}

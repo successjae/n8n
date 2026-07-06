@@ -1,0 +1,48 @@
+{%- comment -%}
+  Reusable price display.
+  Accepts:
+    product   (object)   — pass a product; uses price_min/price_max for range
+    variant   (object)   — optionally a specific variant (overrides product)
+    show_sold_out (boolean) — render "Sold out" when unavailable (default false)
+    class     (string)
+{%- endcomment -%}
+{%- liquid
+  assign target = variant | default: product
+
+  assign on_sale = false
+  assign price = target.price
+  assign compare = target.compare_at_price
+
+  if compare != blank and compare > price
+    assign on_sale = true
+  endif
+
+  assign price_varies = false
+  if variant == blank and product.price_min != product.price_max
+    assign price_varies = true
+  endif
+
+  assign wrapper_class = 'pb-price'
+  if on_sale
+    assign wrapper_class = wrapper_class | append: ' pb-price--on-sale'
+  endif
+-%}
+
+<div class="{{ wrapper_class }} {{ class }}">
+  {%- if show_sold_out and product.available == false -%}
+    <span class="pb-price__soldout">{{ 'products.price.sold_out' | t }}</span>
+  {%- elsif price_varies -%}
+    <span class="pb-price__regular">
+      {{ 'products.price.from' | t }} {{ product.price_min | money }}
+    </span>
+  {%- else -%}
+    {%- if on_sale -%}
+      <span class="pb-visually-hidden">{{ 'products.price.sale_price' | t }}</span>
+    {%- endif -%}
+    <span class="pb-price__regular">{{ price | money }}</span>
+    {%- if on_sale -%}
+      <span class="pb-visually-hidden">{{ 'products.price.regular_price' | t }}</span>
+      <s class="pb-price__compare">{{ compare | money }}</s>
+    {%- endif -%}
+  {%- endif -%}
+</div>
