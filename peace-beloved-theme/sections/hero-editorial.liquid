@@ -1,0 +1,141 @@
+{%- comment -%} Peace Beloved — Editorial hero {%- endcomment -%}
+{%- liquid
+  assign s = section.settings
+  assign hero_class = 'pb-hero pb-hero--' | append: s.height
+  if s.text_align == 'center'
+    assign hero_class = hero_class | append: ' pb-hero--center'
+  endif
+  if s.animate
+    assign hero_class = hero_class | append: ' pb-hero--animate'
+  endif
+-%}
+
+<section
+  class="{{ hero_class }} pb-scheme-{{ s.color_scheme }}"
+  style="--pb-hero-overlay: {{ s.overlay_opacity | divided_by: 100.0 }};"
+>
+  {%- if s.image != blank or s.video != blank -%}
+    <div class="pb-hero__media">
+      {%- if s.video != blank -%}
+        {{ s.video | video_tag: image_size: '1600x', autoplay: true, loop: true, muted: true, controls: false, playsinline: true }}
+      {%- else -%}
+        {%- if s.image_mobile != blank -%}
+          <img
+            class="pb-hero__media-mobile"
+            src="{{ s.image_mobile | image_url: width: 900 }}"
+            srcset="{{ s.image_mobile | image_url: width: 600 }} 600w, {{ s.image_mobile | image_url: width: 900 }} 900w, {{ s.image_mobile | image_url: width: 1200 }} 1200w"
+            sizes="100vw"
+            alt="{{ s.image_mobile.alt | default: s.headline | escape }}"
+            width="{{ s.image_mobile.width }}" height="{{ s.image_mobile.height }}"
+            fetchpriority="high"
+          >
+        {%- endif -%}
+        {%- assign desktop_media_class = 'pb-hero__media-desktop' -%}
+        {%- if s.image_mobile == blank -%}{%- assign desktop_media_class = '' -%}{%- endif -%}
+        <img
+          class="{{ desktop_media_class }}"
+          src="{{ s.image | image_url: width: 1600 }}"
+          srcset="{{ s.image | image_url: width: 1000 }} 1000w, {{ s.image | image_url: width: 1600 }} 1600w, {{ s.image | image_url: width: 2200 }} 2200w"
+          sizes="100vw"
+          alt="{{ s.image.alt | default: s.headline | escape }}"
+          width="{{ s.image.width }}" height="{{ s.image.height }}"
+          fetchpriority="high"
+        >
+        <style>
+          @media screen and (min-width: 768px) {
+            #shopify-section-{{ section.id }} .pb-hero__media-mobile { display: none; }
+            #shopify-section-{{ section.id }} .pb-hero__media-desktop { display: block; }
+          }
+        </style>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  <div class="pb-hero__overlay" aria-hidden="true"></div>
+
+  <div class="pb-hero__content">
+    <div class="pb-container">
+      <div class="pb-hero__inner">
+        {%- if s.eyebrow != blank -%}
+          <span class="pb-eyebrow">{{ s.eyebrow }}</span>
+        {%- endif -%}
+
+        {%- if s.headline != blank -%}
+          <h1 class="pb-hero__headline">{{ s.headline }}</h1>
+        {%- endif -%}
+
+        {%- if s.subheadline != blank -%}
+          <p class="pb-hero__sub">{{ s.subheadline }}</p>
+        {%- endif -%}
+
+        {%- if s.text != blank -%}
+          <p class="pb-hero__text">{{ s.text }}</p>
+        {%- endif -%}
+
+        {%- if s.button_primary_label != blank or s.button_secondary_label != blank -%}
+          <div class="pb-hero__actions">
+            {%- if s.button_primary_label != blank -%}
+              {%- render 'button-beloved', label: s.button_primary_label, url: s.button_primary_link, style: 'primary', size: 'large', arrow: true -%}
+            {%- endif -%}
+            {%- if s.button_secondary_label != blank -%}
+              {%- render 'button-beloved', label: s.button_secondary_label, url: s.button_secondary_link, style: 'ghost', size: 'large' -%}
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Editorial hero",
+  "tag": "section",
+  "settings": [
+    { "type": "header", "content": "Media" },
+    { "type": "image_picker", "id": "image", "label": "Background image (desktop)" },
+    { "type": "image_picker", "id": "image_mobile", "label": "Background image (mobile)" },
+    { "type": "video", "id": "video", "label": "Background video", "info": "Optional. Overrides the image when set." },
+    {
+      "type": "range", "id": "overlay_opacity", "label": "Overlay opacity",
+      "min": 0, "max": 90, "step": 5, "unit": "%", "default": 45
+    },
+    { "type": "header", "content": "Content" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Premium Streetwear" },
+    { "type": "text", "id": "headline", "label": "Headline", "default": "Peace Beloved" },
+    { "type": "text", "id": "subheadline", "label": "Subheadline", "default": "Take the unloved and make it beloved." },
+    { "type": "textarea", "id": "text", "label": "Supporting text", "default": "Streetwear built from peace, resilience, city energy, and the art of becoming." },
+    { "type": "header", "content": "Buttons" },
+    { "type": "text", "id": "button_primary_label", "label": "Primary button label", "default": "Shop the Collection" },
+    { "type": "url", "id": "button_primary_link", "label": "Primary button link" },
+    { "type": "text", "id": "button_secondary_label", "label": "Secondary button label", "default": "Explore the Story" },
+    { "type": "url", "id": "button_secondary_link", "label": "Secondary button link" },
+    { "type": "header", "content": "Layout" },
+    {
+      "type": "select", "id": "height", "label": "Hero height",
+      "options": [
+        { "value": "medium", "label": "Medium" },
+        { "value": "tall", "label": "Tall" },
+        { "value": "full", "label": "Full screen" }
+      ],
+      "default": "tall"
+    },
+    {
+      "type": "select", "id": "text_align", "label": "Text alignment",
+      "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" } ],
+      "default": "left"
+    },
+    {
+      "type": "select", "id": "color_scheme", "label": "Text color scheme",
+      "options": [
+        { "value": "black", "label": "Light text (on dark image)" },
+        { "value": "cream", "label": "Cream text" },
+        { "value": "white", "label": "Dark text (on light image)" }
+      ],
+      "default": "black"
+    },
+    { "type": "checkbox", "id": "animate", "label": "Enable animated intro", "default": true }
+  ],
+  "presets": [{ "name": "Editorial hero" }]
+}
+{% endschema %}

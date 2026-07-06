@@ -1,0 +1,116 @@
+{%- comment -%}
+  Reusable product card.
+  Accepts:
+    product      (object, required)
+    badge        (string)   — custom badge text
+    quick_add    (boolean)  — enable quick add (default from theme settings)
+    hover_image  (boolean)  — enable second-image hover (default from theme settings)
+    lazy         (boolean)  — lazy-load main image (default true)
+    sizes        (string)   — responsive sizes attribute
+{%- endcomment -%}
+{%- liquid
+  assign quick_add_enabled = quick_add
+  if quick_add == nil
+    assign quick_add_enabled = settings.card_quick_add
+  endif
+
+  assign hover_enabled = hover_image
+  if hover_image == nil
+    assign hover_enabled = settings.card_hover_image
+  endif
+
+  assign loading = 'lazy'
+  if lazy == false
+    assign loading = 'eager'
+  endif
+
+  assign card_sizes = sizes | default: '(min-width: 990px) 25vw, (min-width: 768px) 33vw, 50vw'
+
+  assign second_image = product.images[1]
+  assign has_hover = false
+  if hover_enabled and second_image != blank
+    assign has_hover = true
+  endif
+
+  assign on_sale = false
+  if product.compare_at_price > product.price
+    assign on_sale = true
+  endif
+
+  assign single_variant = false
+  if product.variants.size == 1
+    assign single_variant = true
+  endif
+-%}
+
+<article class="pb-card pb-reveal">
+  <div class="pb-card__media">
+    {%- comment -%} Badges {%- endcomment -%}
+    {%- if product.available == false -%}
+      <span class="pb-badge pb-badge--soldout">{{ 'products.card.sold_out' | t }}</span>
+    {%- elsif badge != blank -%}
+      <span class="pb-badge">{{ badge }}</span>
+    {%- elsif on_sale -%}
+      <span class="pb-badge pb-badge--sale">{{ 'products.card.sale' | t }}</span>
+    {%- endif -%}
+
+    <a href="{{ product.url }}" aria-label="{{ product.title | escape }}">
+      {%- if product.featured_media != blank -%}
+        <img
+          class="pb-card__img"
+          src="{{ product.featured_media | image_url: width: 600 }}"
+          srcset="
+            {{ product.featured_media | image_url: width: 300 }} 300w,
+            {{ product.featured_media | image_url: width: 450 }} 450w,
+            {{ product.featured_media | image_url: width: 600 }} 600w,
+            {{ product.featured_media | image_url: width: 900 }} 900w"
+          sizes="{{ card_sizes }}"
+          alt="{{ product.featured_media.alt | default: product.title | escape }}"
+          width="{{ product.featured_media.width }}"
+          height="{{ product.featured_media.height }}"
+          loading="{{ loading }}"
+        >
+        {%- if has_hover -%}
+          <img
+            class="pb-card__img pb-card__img--hover"
+            src="{{ second_image | image_url: width: 600 }}"
+            srcset="{{ second_image | image_url: width: 450 }} 450w, {{ second_image | image_url: width: 600 }} 600w"
+            sizes="{{ card_sizes }}"
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+          >
+        {%- endif -%}
+      {%- else -%}
+        <div class="pb-card__img--placeholder pb-placeholder">
+          {{ 'product-apparel-1' | placeholder_svg_tag: 'pb-placeholder__svg' }}
+        </div>
+      {%- endif -%}
+    </a>
+
+    {%- comment -%} Quick add {%- endcomment -%}
+    {%- if quick_add_enabled and product.available -%}
+      <div class="pb-card__quickadd">
+        {%- if single_variant -%}
+          <form method="post" action="{{ routes.cart_add_url }}" data-quick-add-form data-product-url="{{ product.url }}">
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+            <input type="hidden" name="quantity" value="1">
+            <button type="submit" class="pb-btn pb-btn--dark pb-btn--full">{{ 'products.card.quick_add' | t }}</button>
+          </form>
+        {%- else -%}
+          <a href="{{ product.url }}" class="pb-btn pb-btn--dark pb-btn--full">{{ 'products.card.choose_options' | t }}</a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="pb-card__body">
+    {%- if settings.card_show_vendor and product.vendor != blank -%}
+      <span class="pb-eyebrow" style="margin:0;">{{ product.vendor }}</span>
+    {%- endif -%}
+    <h3 class="pb-card__title">
+      <a href="{{ product.url }}">{{ product.title }}</a>
+    </h3>
+    {%- render 'price-beloved', product: product -%}
+  </div>
+</article>

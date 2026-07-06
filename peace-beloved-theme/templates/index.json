@@ -1,0 +1,130 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-editorial",
+      "settings": {
+        "eyebrow": "Premium Streetwear",
+        "headline": "Peace Beloved",
+        "subheadline": "Take the unloved and make it beloved.",
+        "text": "Streetwear built from peace, resilience, city energy, and the art of becoming.",
+        "button_primary_label": "Shop the Collection",
+        "button_primary_link": "shopify://collections/all",
+        "button_secondary_label": "Explore the Story",
+        "button_secondary_link": "shopify://pages/about",
+        "height": "tall",
+        "text_align": "left",
+        "color_scheme": "black",
+        "overlay_opacity": 45,
+        "animate": true
+      }
+    },
+    "marquee": {
+      "type": "marquee-beloved",
+      "settings": {
+        "phrases": "Peace Beloved\nTake the unloved and make it beloved\nWear the Message\nFrom overlooked to iconic",
+        "speed": 34,
+        "direction": "left",
+        "pause_on_hover": true,
+        "background": "#F58426",
+        "text_color": "#101010"
+      }
+    },
+    "manifesto": {
+      "type": "brand-manifesto",
+      "settings": {
+        "image_position": "left",
+        "eyebrow": "The Message",
+        "heading": "Built for the Ones Who Became Beloved",
+        "body": "<p>Peace Beloved is more than clothing. It is a statement of transformation. Every piece carries the reminder that what was overlooked, counted out, or misunderstood can still become chosen, elevated, and beloved.</p>",
+        "quote": "From overlooked to iconic.",
+        "button_label": "Read Our Story",
+        "button_link": "shopify://pages/about",
+        "button_style": "dark",
+        "background_scheme": "cream",
+        "accent_color": "#F58426"
+      }
+    },
+    "featured": {
+      "type": "featured-drop",
+      "settings": {
+        "eyebrow": "The Drop",
+        "heading": "The NYPB Collection",
+        "subheading": "Premium pieces built with court energy, city attitude, and beloved identity.",
+        "product_limit": 4,
+        "layout": "grid",
+        "quick_add": true,
+        "hover_image": true,
+        "button_label": "Shop the Collection",
+        "background_scheme": "white"
+      }
+    },
+    "lookbook": {
+      "type": "lookbook-grid",
+      "settings": {
+        "eyebrow": "Lookbook",
+        "heading": "Wear the Message",
+        "subheading": "Styled for the city, the court, and the ones becoming beloved.",
+        "background_scheme": "black"
+      },
+      "blocks": {
+        "look-1": { "type": "image", "settings": { "size": "tall", "eyebrow": "Court Ready", "title": "The Warm-Up Set" } },
+        "look-2": { "type": "image", "settings": { "size": "normal", "eyebrow": "City Layer", "title": "Beloved Hoodie" } },
+        "look-3": { "type": "image", "settings": { "size": "normal", "eyebrow": "Everyday", "title": "Peace Tee" } },
+        "look-4": { "type": "image", "settings": { "size": "wide", "eyebrow": "Off Duty", "title": "The Full Fit" } }
+      },
+      "block_order": ["look-1", "look-2", "look-3", "look-4"]
+    },
+    "values": {
+      "type": "values-cards",
+      "settings": {
+        "eyebrow": "What We Stand For",
+        "heading": "Peace. Beloved. Transformation.",
+        "background_scheme": "cream"
+      },
+      "blocks": {
+        "value-1": { "type": "value", "settings": { "heading": "Peace", "text": "Clothing rooted in calm confidence, self-respect, and purpose.", "card_scheme": "blue" } },
+        "value-2": { "type": "value", "settings": { "heading": "Beloved", "text": "A reminder that value does not come from outside approval.", "card_scheme": "orange" } },
+        "value-3": { "type": "value", "settings": { "heading": "Transformation", "text": "Taking what was overlooked and making it impossible to ignore.", "card_scheme": "black" } }
+      },
+      "block_order": ["value-1", "value-2", "value-3"]
+    },
+    "instagram": {
+      "type": "instagram-gallery",
+      "settings": {
+        "eyebrow": "Community",
+        "heading": "Seen in the City",
+        "subheading": "Tag @PeaceBelovedClothing to be featured.",
+        "cta_label": "Follow @PeaceBelovedClothing",
+        "background_scheme": "white"
+      },
+      "blocks": {
+        "ig-1": { "type": "image" },
+        "ig-2": { "type": "image" },
+        "ig-3": { "type": "image" },
+        "ig-4": { "type": "image" }
+      },
+      "block_order": ["ig-1", "ig-2", "ig-3", "ig-4"]
+    },
+    "signup": {
+      "type": "email-signup-beloved",
+      "settings": {
+        "eyebrow": "Newsletter",
+        "heading": "Join the Beloved List",
+        "text": "Get first access to new drops, private releases, restocks, and exclusive brand updates.",
+        "button_label": "Get First Access",
+        "button_style": "dark",
+        "background_scheme": "blue"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "marquee",
+    "manifesto",
+    "featured",
+    "lookbook",
+    "values",
+    "instagram",
+    "signup"
+  ]
+}
