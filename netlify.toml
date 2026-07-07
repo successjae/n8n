@@ -1,0 +1,18 @@
+# Netlify configuration (repository root).
+#
+# The deployable site lives in the success-jae-site/ subdirectory of this
+# monorepo. Declaring `base` here pins the build to that folder and overrides
+# Netlify's monorepo "Project to deploy" picker, so no manual base-directory
+# selection is needed in the UI.
+
+[build]
+  base = "success-jae-site"
+  command = "pnpm build"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Official Next.js runtime — handles SSR/ISR, next/image, and sets the
+# publish directory automatically (relative to the base directory above).
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
