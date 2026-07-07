@@ -55,6 +55,39 @@ function MarqueeRow({ entries, reverse }: { entries: NetworkEntry[]; reverse?: b
 	);
 }
 
+function MomentsMarquee() {
+	// duplicate for seamless -50% translate loop; hover pauses the row
+	const doubled = [...MOMENTS, ...MOMENTS];
+	return (
+		<Reveal className="group/moments mt-14 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]">
+			<div className="flex w-max animate-marquee py-2 group-hover/moments:[animation-play-state:paused] motion-reduce:animate-none motion-reduce:flex-wrap">
+				{doubled.map((moment, index) => (
+					<figure
+						key={`${moment.src}-${index}`}
+						className="glass-card group/photo relative mx-2 aspect-[4/5] w-60 shrink-0 overflow-hidden !p-0 sm:w-72"
+					>
+						<Image
+							src={moment.src}
+							alt={index < MOMENTS.length ? moment.alt : ''}
+							aria-hidden={index >= MOMENTS.length}
+							fill
+							sizes="288px"
+							className="object-cover grayscale-[0.4] transition-all duration-700 group-hover/photo:scale-105 group-hover/photo:grayscale-0"
+						/>
+						<div
+							className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-ink-950/95 via-ink-950/50 to-transparent"
+							aria-hidden
+						/>
+						<figcaption className="absolute inset-x-0 bottom-0 p-4">
+							<p className="text-sm font-semibold leading-snug text-white">{moment.caption}</p>
+						</figcaption>
+					</figure>
+				))}
+			</div>
+		</Reveal>
+	);
+}
+
 export default function NetworkWall() {
 	const [filter, setFilter] = useState<NetworkCategory | 'All'>('All');
 
@@ -76,32 +109,13 @@ export default function NetworkWall() {
 					subtitle="A visual snapshot of creators, companies, entrepreneurs, artists, and brands connected to Success Jae's work across technology, automation, digital systems, entertainment, and entrepreneurship."
 					center
 				/>
+			</div>
 
-				{/* Moments gallery — real photos from the network */}
-				<div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-					{MOMENTS.map((moment, index) => (
-						<Reveal key={moment.src} delay={index * 0.08}>
-							<figure className="glass-card group relative aspect-[4/5] overflow-hidden !p-0">
-								<Image
-									src={moment.src}
-									alt={moment.alt}
-									fill
-									sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-									className="object-cover grayscale-[0.4] transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0"
-								/>
-								<div
-									className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-ink-950/95 via-ink-950/50 to-transparent"
-									aria-hidden
-								/>
-								<figcaption className="absolute inset-x-0 bottom-0 p-4">
-									<p className="text-sm font-semibold leading-snug text-white">{moment.caption}</p>
-								</figcaption>
-							</figure>
-						</Reveal>
-					))}
-				</div>
+			{/* Moments — real photos from the network, slow full-bleed marquee */}
+			<MomentsMarquee />
 
-				<Reveal delay={0.1} className="mt-12 flex flex-wrap justify-center gap-2.5">
+			<div className="mx-auto max-w-7xl px-5 lg:px-8">
+				<Reveal delay={0.1} className="mt-14 flex flex-wrap justify-center gap-2.5">
 					{(['All', ...NETWORK_CATEGORIES] as const).map((category) => (
 						<button
 							key={category}

@@ -260,6 +260,31 @@ export const MOMENTS: Moment[] = [
 		alt: 'Success Jae ringside at a Las Vegas fight night',
 		caption: 'Fight night — Las Vegas',
 	},
+	{
+		src: '/images/swizz-beatz.jpg',
+		alt: 'Success Jae in a recording studio with Swizz Beatz',
+		caption: 'In the studio — with Swizz Beatz',
+	},
+	{
+		src: '/images/mayweather-vegas.jpg',
+		alt: 'Success Jae with Floyd Mayweather in Las Vegas',
+		caption: 'Las Vegas — with Floyd Mayweather',
+	},
+	{
+		src: '/images/backstage-show.jpg',
+		alt: 'Success Jae backstage at a show',
+		caption: 'Backstage — show night',
+	},
+	{
+		src: '/images/gallery-day.jpg',
+		alt: 'Success Jae at a community art gallery',
+		caption: 'Community & culture — gallery day',
+	},
+	{
+		src: '/images/community-1.jpg',
+		alt: 'Success Jae at a community event',
+		caption: 'The network runs deep',
+	},
 ];
 
 export interface Milestone {
