@@ -1,10 +1,12 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import Reveal from './Reveal';
 import SectionHeading from './SectionHeading';
 import {
+	MOMENTS,
 	NETWORK_CATEGORIES,
 	NETWORK_ENTRIES,
 	type NetworkCategory,
@@ -75,7 +77,31 @@ export default function NetworkWall() {
 					center
 				/>
 
-				<Reveal delay={0.1} className="mt-10 flex flex-wrap justify-center gap-2.5">
+				{/* Moments gallery — real photos from the network */}
+				<div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+					{MOMENTS.map((moment, index) => (
+						<Reveal key={moment.src} delay={index * 0.08}>
+							<figure className="glass-card group relative aspect-[4/5] overflow-hidden !p-0">
+								<Image
+									src={moment.src}
+									alt={moment.alt}
+									fill
+									sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+									className="object-cover grayscale-[0.4] transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0"
+								/>
+								<div
+									className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-ink-950/95 via-ink-950/50 to-transparent"
+									aria-hidden
+								/>
+								<figcaption className="absolute inset-x-0 bottom-0 p-4">
+									<p className="text-sm font-semibold leading-snug text-white">{moment.caption}</p>
+								</figcaption>
+							</figure>
+						</Reveal>
+					))}
+				</div>
+
+				<Reveal delay={0.1} className="mt-12 flex flex-wrap justify-center gap-2.5">
 					{(['All', ...NETWORK_CATEGORIES] as const).map((category) => (
 						<button
 							key={category}

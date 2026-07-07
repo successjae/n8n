@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Reveal from './Reveal';
 import SectionHeading from './SectionHeading';
 import { STORY_MILESTONES } from '@/lib/data';
@@ -31,6 +32,24 @@ export default function MyStory() {
 									consistency.
 								</p>
 							</div>
+						</Reveal>
+						<Reveal delay={0.2}>
+							<figure className="glass-card group relative mt-8 aspect-[16/10] overflow-hidden !p-0">
+								<Image
+									src="/images/workspace.jpg"
+									alt="Success Jae working on strategy and systems across two laptops in a studio workspace"
+									fill
+									sizes="(max-width: 1024px) 100vw, 50vw"
+									className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+								/>
+								<div
+									className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink-950/90 to-transparent"
+									aria-hidden
+								/>
+								<figcaption className="absolute bottom-4 left-5 text-sm font-medium text-neutral-200">
+									Vision. Strategy. Execution.
+								</figcaption>
+							</figure>
 						</Reveal>
 						<Reveal delay={0.25}>
 							{/* Featured press item — link to the Black Enterprise interview when the URL is added */}

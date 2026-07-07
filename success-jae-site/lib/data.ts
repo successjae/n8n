@@ -232,6 +232,36 @@ export const NETWORK_ENTRIES: NetworkEntry[] = [
 	{ name: 'Google Workspace automation', category: 'AI Systems Examples' },
 ];
 
+export interface Moment {
+	src: string;
+	alt: string;
+	caption: string;
+}
+
+/** Real photos from Success Jae's network — shown in the Moments gallery. */
+export const MOMENTS: Moment[] = [
+	{
+		src: '/images/money-team.jpg',
+		alt: 'Success Jae with Floyd Mayweather at a The Money Team event',
+		caption: 'The Money Team — with Floyd Mayweather',
+	},
+	{
+		src: '/images/fifty-cent.jpg',
+		alt: 'Success Jae with 50 Cent at a boxing gym wearing a The Money Team shirt',
+		caption: 'The Money Team era — with 50 Cent',
+	},
+	{
+		src: '/images/dave-east.jpg',
+		alt: 'Success Jae backstage with Dave East',
+		caption: 'Backstage — with Dave East',
+	},
+	{
+		src: '/images/fight-night.jpg',
+		alt: 'Success Jae ringside at a Las Vegas fight night',
+		caption: 'Fight night — Las Vegas',
+	},
+];
+
 export interface Milestone {
 	title: string;
 	description: string;
