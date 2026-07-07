@@ -2,6 +2,7 @@ import type { Config } from 'tailwindcss';
 
 const config: Config = {
 	content: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}', './lib/**/*.{ts,tsx}'],
+	darkMode: 'class',
 	theme: {
 		extend: {
 			colors: {
@@ -49,6 +50,8 @@ const config: Config = {
 				'pulse-slow': 'pulse 5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
 				float: 'float 7s ease-in-out infinite',
 				'float-delayed': 'float 8s ease-in-out 1.5s infinite',
+				fadeIn: 'fadeIn 0.6s ease-out both',
+				success: 'success 1s ease-in-out infinite',
 			},
 			keyframes: {
 				marquee: {
@@ -62,6 +65,14 @@ const config: Config = {
 				float: {
 					'0%, 100%': { transform: 'translateY(0)' },
 					'50%': { transform: 'translateY(-14px)' },
+				},
+				fadeIn: {
+					'0%': { opacity: '0', transform: 'translateY(12px)' },
+					'100%': { opacity: '1', transform: 'translateY(0)' },
+				},
+				success: {
+					'0%, 100%': { backgroundColor: '#16a34a' },
+					'50%': { backgroundColor: '#22c55e' },
 				},
 			},
 		},

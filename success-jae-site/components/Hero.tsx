@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import NetworkCanvas from './NetworkCanvas';
 import RotatingText from './RotatingText';
@@ -10,15 +11,15 @@ const floatingCards = [
 		label: 'Workflow',
 		title: 'Client intake → CRM → Follow-up',
 		accent: 'text-electric-300',
-		position: 'right-[4%] top-[18%]',
-		animation: 'animate-float',
+		position: 'right-[26%] top-[16%]',
+		animation: 'animate-float-delayed',
 	},
 	{
 		label: 'Automation',
 		title: '38 hrs/mo of manual work removed',
 		accent: 'text-gold-300',
-		position: 'right-[12%] bottom-[22%]',
-		animation: 'animate-float-delayed',
+		position: 'right-[22%] bottom-[16%]',
+		animation: 'animate-float',
 	},
 ] as const;
 
@@ -52,6 +53,38 @@ export default function Hero() {
 				className="pointer-events-none absolute inset-0 hidden xl:block"
 				aria-hidden
 			>
+				{/* floating portrait — Success Jae in the brown jacket, part of the hero animation */}
+				<figure className="glass-card absolute right-[5%] top-[15%] w-72 animate-float overflow-hidden !p-0 shadow-[0_0_60px_-20px_rgba(212,169,78,0.45)]">
+					<div className="relative aspect-[4/5]">
+						<Image
+							src="/images/jae-portrait.jpg"
+							alt=""
+							fill
+							priority
+							sizes="288px"
+							className="object-cover object-top"
+						/>
+						<div
+							className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink-950/95 via-ink-950/40 to-transparent"
+							aria-hidden
+						/>
+						<figcaption className="absolute inset-x-0 bottom-0 p-4">
+							<p className="font-display text-sm font-bold text-white">
+								Jared &ldquo;Success Jae&rdquo; Vincent
+							</p>
+							<p className="mt-0.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-gold-300">
+								AI Automation · Cloud · Systems
+							</p>
+						</figcaption>
+						<span
+							className="absolute right-3 top-3 flex items-center gap-1.5 rounded-full border border-emerald-400/30 bg-ink-950/70 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-emerald-300 backdrop-blur"
+						>
+							<span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
+							Building
+						</span>
+					</div>
+				</figure>
+
 				{floatingCards.map((card) => (
 					<div key={card.title} className={`glass-card absolute w-64 p-4 ${card.position} ${card.animation}`}>
 						<p className={`text-[10px] font-semibold uppercase tracking-[0.25em] ${card.accent}`}>
