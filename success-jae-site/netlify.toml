@@ -1,0 +1,16 @@
+# Netlify configuration for the Success Jae site.
+# In the Netlify UI, set the site's "Base directory" to: success-jae-site
+# (all paths below are then resolved relative to that base directory).
+
+[build]
+  command = "pnpm build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
+  # Next.js is detected automatically; the plugin below wires up SSR/ISR + image optimization.
+
+# Official Next.js runtime for Netlify (auto-installed when Next is detected,
+# declared here so the build is deterministic).
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
