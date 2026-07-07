@@ -8,11 +8,13 @@
 [build]
   base = "success-jae-site"
   command = "pnpm build"
+  # Path is written relative to the repository root (Netlify monorepo convention),
+  # pinned so a stale publish value from the UI picker can't override it.
+  publish = "success-jae-site/.next"
 
 [build.environment]
   NODE_VERSION = "20"
 
-# Official Next.js runtime — handles SSR/ISR, next/image, and sets the
-# publish directory automatically (relative to the base directory above).
+# Official Next.js runtime — handles SSR/ISR and next/image.
 [[plugins]]
   package = "@netlify/plugin-nextjs"
