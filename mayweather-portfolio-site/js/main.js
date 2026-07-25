@@ -6,6 +6,20 @@
   ).matches;
 
   /* ---------------------------------------------------------
+     Placeholder links/forms: this is a demo site with no real
+     destinations or backend yet, so keep them inert instead of
+     jumping to the top of the page or reloading with a query
+     string.
+     --------------------------------------------------------- */
+  document.querySelectorAll("[data-placeholder-link]").forEach((link) => {
+    link.addEventListener("click", (event) => event.preventDefault());
+  });
+
+  document.querySelectorAll("[data-placeholder-form]").forEach((form) => {
+    form.addEventListener("submit", (event) => event.preventDefault());
+  });
+
+  /* ---------------------------------------------------------
      Nav: fade in once the hero has been scrolled past
      --------------------------------------------------------- */
   const nav = document.getElementById("siteNav");
