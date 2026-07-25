@@ -519,14 +519,42 @@ input:focus-visible,
 .career,
 .locations {
   position: relative;
+  overflow: hidden;
   background: var(--color-bg-raised);
   padding: clamp(3rem, 8vw, 5rem) 0;
   border-top: 1px solid rgba(201, 162, 75, 0.2);
   border-bottom: 1px solid rgba(201, 162, 75, 0.2);
 }
 
+.career__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.career__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+}
+
+.career__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 10, 10, 0.4) 0%,
+    rgba(18, 18, 18, 0.65) 55%,
+    var(--color-bg-raised) 88%
+  );
+}
+
 .career__intro,
 .locations__intro {
+  position: relative;
+  z-index: 2;
   padding: 0 clamp(1.25rem, 5vw, 4rem);
   margin-bottom: clamp(2rem, 5vw, 3rem);
   max-width: 760px;
@@ -558,6 +586,12 @@ input:focus-visible,
   -webkit-overflow-scrolling: touch;
   scrollbar-color: var(--color-gold) transparent;
   scrollbar-width: thin;
+}
+
+.career__track {
+  position: relative;
+  z-index: 2;
+  background: var(--color-bg-raised);
 }
 
 .career__list,
@@ -705,6 +739,18 @@ input:focus-visible,
   width: 42%;
   height: 42%;
   color: var(--color-gold);
+}
+
+.store__media--photo {
+  overflow: hidden;
+  padding: 0;
+}
+
+.store__media--photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
 }
 
 .store__price {
