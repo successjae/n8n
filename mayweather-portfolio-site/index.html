@@ -6,6 +6,7 @@
   <title>Floyd Mayweather Jr. — The Money Team</title>
   <meta name="description" content="Floyd Mayweather Jr. — undefeated five-division world champion. Ventures, Foundation, Store." />
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="preload" href="assets/fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -52,12 +53,23 @@
     <section class="ventures" id="ventures" aria-label="Ventures">
 
       <article class="panel panel--promotions" id="mayweather-promotions">
-        <div class="panel__media panel__media--placeholder" data-fade aria-hidden="true">
-          <span class="placeholder-label">Placeholder photo — Mayweather Promotions fight night, arena wide shot</span>
+        <div class="panel__media panel__media--graphic panel__media--promotions" data-fade aria-hidden="true">
+          <svg class="panel__watermark" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1">
+            <circle cx="24" cy="24" r="20" />
+            <path d="M24 12l3.5 7.5 8 .8-6 5.6 1.8 8.1L24 30l-7.3 4 1.8-8.1-6-5.6 8-.8z" stroke-linejoin="round" />
+          </svg>
         </div>
         <div class="panel__scrim" aria-hidden="true"></div>
         <div class="panel__content" data-fade>
-          <div class="panel__logo" aria-hidden="true">MP</div>
+          <div class="brand-mark">
+            <span class="brand-mark__icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="24" cy="24" r="19" />
+                <path d="M24 12l3.5 7.5 8 .8-6 5.6 1.8 8.1L24 30l-7.3 4 1.8-8.1-6-5.6 8-.8z" stroke-linejoin="round" />
+              </svg>
+            </span>
+            <span class="brand-mark__word">MP</span>
+          </div>
           <h2>Mayweather Promotions</h2>
           <p>
             Founded by Floyd Mayweather Jr. in 2007, Mayweather Promotions builds
@@ -72,12 +84,25 @@
       </article>
 
       <article class="panel panel--fitness" id="mayweather-boxing-fitness">
-        <div class="panel__media panel__media--placeholder" data-fade aria-hidden="true">
-          <span class="placeholder-label">Placeholder photo — Mayweather Boxing + Fitness studio interior</span>
+        <div class="panel__media panel__media--graphic panel__media--fitness" data-fade aria-hidden="true">
+          <svg class="panel__watermark" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1">
+            <path d="M24 6v6" stroke-linecap="round" />
+            <path d="M17 12h14l2 10-2 18a2 2 0 01-2 2H19a2 2 0 01-2-2l-2-18z" />
+            <path d="M6 20l6 2M6 28l6-1" stroke-linecap="round" />
+          </svg>
         </div>
         <div class="panel__scrim" aria-hidden="true"></div>
         <div class="panel__content" data-fade>
-          <div class="panel__logo" aria-hidden="true">MB+F</div>
+          <div class="brand-mark">
+            <span class="brand-mark__icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M24 6v6" stroke-linecap="round" />
+                <path d="M17 12h14l2 10-2 18a2 2 0 01-2 2H19a2 2 0 01-2-2l-2-18z" />
+                <path d="M6 20l6 2M6 28l6-1" stroke-linecap="round" />
+              </svg>
+            </span>
+            <span class="brand-mark__word">MB+F</span>
+          </div>
           <h2>Mayweather Boxing&nbsp;+&nbsp;Fitness</h2>
           <p>
             A boutique fitness franchise built on the training methods that
@@ -101,7 +126,16 @@
         </div>
         <div class="panel__scrim" aria-hidden="true"></div>
         <div class="panel__content" data-fade>
-          <div class="panel__logo" aria-hidden="true">TMT</div>
+          <div class="brand-mark">
+            <span class="brand-mark__icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="16" cy="30" r="8" />
+                <circle cx="32" cy="30" r="8" />
+                <path d="M16 22c0-6 4-10 4-10M32 22c0-6-4-10-4-10" stroke-linecap="round" />
+              </svg>
+            </span>
+            <span class="brand-mark__word">TMT</span>
+          </div>
           <h2>The Money Team</h2>
           <p>
             TMT is the apparel and lifestyle brand born out of Floyd's
@@ -119,11 +153,25 @@
 
     <!-- FOUNDATION -->
     <section class="panel panel--foundation" id="foundation" aria-label="Foundation">
-      <div class="panel__media panel__media--placeholder panel__media--warm" data-fade aria-hidden="true">
-        <span class="placeholder-label">Placeholder photo — warm-toned image of Foundation youth mentorship event</span>
+      <div class="panel__media panel__media--graphic panel__media--foundation" data-fade aria-hidden="true">
+        <svg class="panel__watermark" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1">
+          <path d="M6 32h36" stroke-linecap="round" />
+          <path d="M10 32a14 14 0 0128 0" />
+          <path d="M24 10v6M12 16l4 4M36 16l-4 4" stroke-linecap="round" />
+        </svg>
       </div>
       <div class="panel__scrim panel__scrim--warm" aria-hidden="true"></div>
       <div class="panel__content" data-fade>
+        <div class="brand-mark">
+          <span class="brand-mark__icon brand-mark__icon--warm" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M6 32h36" stroke-linecap="round" />
+              <path d="M10 32a14 14 0 0128 0" />
+              <path d="M24 10v6M12 16l4 4M36 16l-4 4" stroke-linecap="round" />
+            </svg>
+          </span>
+          <span class="brand-mark__word">FMJF</span>
+        </div>
         <p class="panel__eyebrow">Giving Back</p>
         <h2>The Floyd Mayweather Jr.&nbsp;Foundation</h2>
         <p>
@@ -219,7 +267,7 @@
       <div class="locations__intro" data-fade>
         <p class="panel__eyebrow">Train Like a Champion</p>
         <h2>Mayweather Boxing + Fitness Locations</h2>
-        <p class="career__hint">Illustrative markets — placeholder data →</p>
+        <p class="career__hint">Illustrative markets →</p>
       </div>
       <div
         class="locations__track"
@@ -229,29 +277,29 @@
       >
         <ul class="locations__list">
           <li class="locations__item">
-            <span class="placeholder-label">Placeholder photo</span>
+            <span class="locations__mark" aria-hidden="true">LV</span>
             <h3>Las Vegas, NV</h3>
             <p>Flagship location</p>
           </li>
           <li class="locations__item">
-            <span class="placeholder-label">Placeholder photo</span>
+            <span class="locations__mark" aria-hidden="true">LA</span>
             <h3>Los Angeles, CA</h3>
-            <p>Placeholder location</p>
+            <p>Illustrative location</p>
           </li>
           <li class="locations__item">
-            <span class="placeholder-label">Placeholder photo</span>
+            <span class="locations__mark" aria-hidden="true">MIA</span>
             <h3>Miami, FL</h3>
-            <p>Placeholder location</p>
+            <p>Illustrative location</p>
           </li>
           <li class="locations__item">
-            <span class="placeholder-label">Placeholder photo</span>
+            <span class="locations__mark" aria-hidden="true">NYC</span>
             <h3>New York, NY</h3>
-            <p>Placeholder location</p>
+            <p>Illustrative location</p>
           </li>
           <li class="locations__item">
-            <span class="placeholder-label">Placeholder photo</span>
+            <span class="locations__mark" aria-hidden="true">HOU</span>
             <h3>Houston, TX</h3>
-            <p>Placeholder location</p>
+            <p>Illustrative location</p>
           </li>
         </ul>
       </div>
@@ -265,19 +313,33 @@
       </div>
       <div class="store__grid">
         <article class="store__tile" data-fade>
-          <div class="store__media placeholder-label">Placeholder product photo</div>
+          <div class="store__media" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M22 8l-12 6 4 8 6-3v33h24V19l6 3 4-8-12-6-4 4h-8z" stroke-linejoin="round" />
+            </svg>
+          </div>
           <h3>TMT Apparel Capsule</h3>
-          <p class="store__price">Placeholder price</p>
+          <p class="store__price">Illustrative price</p>
         </article>
         <article class="store__tile" data-fade>
-          <div class="store__media placeholder-label">Placeholder product photo</div>
+          <div class="store__media" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M20 30V18a6 6 0 0112 0v6M32 24v-4a5 5 0 0110 0v4M42 20a5 5 0 0110 0v14c0 10-8 18-18 18H26a10 10 0 01-10-10v-6c0-4 3-7 7-7h5" stroke-linejoin="round" stroke-linecap="round" />
+            </svg>
+          </div>
           <h3>Training Gloves Collection</h3>
-          <p class="store__price">Placeholder price</p>
+          <p class="store__price">Illustrative price</p>
         </article>
         <article class="store__tile" data-fade>
-          <div class="store__media placeholder-label">Placeholder product photo</div>
+          <div class="store__media" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 34a20 20 0 0140 0" stroke-linecap="round" />
+              <path d="M8 34h48" stroke-linecap="round" />
+              <path d="M44 34l14-2" stroke-linecap="round" />
+            </svg>
+          </div>
           <h3>Signature Collection</h3>
-          <p class="store__price">Placeholder price</p>
+          <p class="store__price">Illustrative price</p>
         </article>
       </div>
       <a class="cta" href="#" data-placeholder-link data-fade>Shop The Money Team <span aria-hidden="true">→</span></a>
